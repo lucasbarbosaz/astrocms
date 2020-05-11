@@ -1,0 +1,117 @@
+#flash-container, body {
+  width: 100%;
+  height: 100%;
+  margin: 0
+}
+
+#client-ui {
+  height: 100%
+}
+
+#flash-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow: hidden
+}
+
+body {
+   margin: 0;
+   background: #000;
+   color: #7ecaee;
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   font-family: Ubuntu,"Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,sans-serif;
+   font-size: 16px;
+   font-variant-ligatures: common-ligatures;
+   line-height: 1.4;
+   min-height: 100vh;
+}
+
+.client-error {
+   max-width: 480px;
+}
+
+.client-error__title {
+   text-align: center;
+}
+
+.client-error__flash {
+   background-image: url('../img/flash.png');
+   display: inline-block;
+   height: 39px;
+   margin: 12px 12px 0;
+   width: 158px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   color: #fff;
+   font-family: "Ubuntu Condensed","Trebuchet MS","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Tahoma,sans-serif;
+   font-weight: 400;
+   margin: .6em 0;
+   line-height: 1.2;
+}
+
+h1, h2, h3, h4, h5 {
+   text-transform: uppercase;
+}
+
+p {
+   margin: .75em 0;
+}
+
+a {
+   color: #fff;
+   cursor: pointer;
+   outline: 0;
+   text-decoration: none;
+}
+
+
+.online_box {
+  background-color: rgba(40, 40, 40, 0.65);
+  height: 26px;
+  width: 170px;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: rgba(255, 255, 255, 0.20);
+  border-style: solid;
+  margin-top:10px;
+  right: 0;
+  margin-right: 209px;
+  float: right;
+  position: relative;
+  z-index: 5;
+  box-sizing: border-box;
+  padding: 10px;
+  -webkit-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.70), 1px 0px 0px 0px rgba(0, 0, 0, 0.70), -1px 0px 0px 0px rgba(0, 0, 0, 0.70);
+  -moz-box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.70), 1px 0px 0px 0px rgba(0, 0, 0, 0.70), -1px 0px 0px 0px rgba(0, 0, 0, 0.70);
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.70), 1px 0px 0px 0px rgba(0, 0, 0, 0.70), 0px 0px 0px 1px rgba(0, 0, 0, 0.70);
+  cursor: pointer;
+}
+
+.online_box span {
+  color: white;
+  font-family: Ubuntu, sans-serif;
+  position: absolute;
+  margin-top: -9px;
+}
+
+.online_box > img{
+  width:29px;
+  height:28px;
+  position: absolute;
+  right:0;
+  top: 0;
+  margin-top:-3px;margin-right:-3px;
+}
+#flashi {
+  width:200px;
+  height:200px;
+    z-index:9999999999999999;
+}
+
