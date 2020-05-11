@@ -1,5 +1,5 @@
 
-![](images/https://cdn.discordapp.com/attachments/639437005125582863/709405421298778243/unknown.png)
+![](https://cdn.discordapp.com/attachments/639437005125582863/709405421298778243/unknown.png)
 <h2><b>AstroCMS</b></h2>
 <h5>Created by Laxus(Back-End), Dut(Front-End), Claush(drawing)</h5>
 **All rights reserved.**
