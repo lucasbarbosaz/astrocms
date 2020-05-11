@@ -2,7 +2,7 @@
 	session_start();
 	require_once ("../../geral.php");
 
-	if($_GET['id'] != "") {
+	if(isset($_GET['id']) && is_numeric($_GET['article_id'])) {
 		$news_id = $_GET['id'];
 	} else {
 		$sql = $bdd->query("SELECT * FROM habbo_news WHERE id != '-344' ORDER BY id DESC LIMIT 1");
