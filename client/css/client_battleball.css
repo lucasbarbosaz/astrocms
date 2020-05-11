@@ -1,0 +1,105 @@
+.customClientComponentFrame {
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 100;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+        }
+
+        .return {
+            display: inline-block;
+            background-color: #ffb900;
+            border-color: #ffea00;
+            border-radius: 0 5px 5px 0;
+            border-width: 2px 2px 2px 1px;
+            box-shadow: none;
+            position: relative;
+            margin-left: 14px;
+            padding: 5px 6px;
+            z-index: 200;
+            line-height: 1.2;
+            color: #000;
+            font-size: 12px;
+            border-style: solid;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            text-align: center;
+            filter: drop-shadow(-1px 4px 0 rgba(0, 0, 0, .3));
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .return:after,
+        .return:before {
+            content: '';
+            position: absolute;
+            display: block;
+            border-style: solid
+        }
+
+        .return:hover {
+            background-color: #ffd400;
+            border-color: #fffd70
+        }
+
+        .return:active,
+        .return:disabled {
+            background-color: #f89400;
+            border-color: #ffce37
+        }
+
+        .return:active,
+        .return:hover {
+            border-bottom-style: solid;
+            border-bottom-width: 2px
+        }
+
+        .return:active {
+            transform: translate(0, 2px);
+            filter: drop-shadow(-1px 2px 0 rgba(0, 0, 0, .3));
+            box-shadow: none
+        }
+
+        .return:before {
+            border-width: 14px;
+            top: -2px;
+            border-color: transparent #ffea00 transparent transparent;
+            left: -29px
+        }
+
+        .return:after {
+            border-width: 13px;
+            top: -1px;
+            border-color: transparent #ffb900 transparent transparent;
+            left: -25px
+        }
+
+        .return:hover:before {
+            border-color: transparent #fffd70 transparent transparent
+        }
+
+        .return:hover:after {
+            border-color: transparent #ffd400 transparent transparent
+        }
+
+        .return:active:before,
+        .return:disabled:before {
+            border-color: transparent #ffce37 transparent transparent
+        }
+
+        .return:active:after,
+        .return:disabled:after {
+            border-color: transparent #f89400 transparent transparent
+        }
+
+        .return {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+        }
