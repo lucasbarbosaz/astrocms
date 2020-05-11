@@ -5,4 +5,7 @@
 
 <h2>Compatible</h2>
 <h4>This cms is compatible with:</h4>
-<li>PHP 5.5.30</li>
+<li>PHP 5.5.x</li>,
+<li>MySQL 5.0+</li>,
+<li>IIS</li>,
+<li>XAMPP 5.5.30</li>
