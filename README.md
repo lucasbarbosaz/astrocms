@@ -1,4 +1,4 @@
-<img>https://media.discordapp.net/attachments/639437005125582863/709405421298778243/unknown.png</img>
+❮img src="https://cdn.discordapp.com/attachments/639437005125582863/709405421298778243/unknown.png" ❯
 
 <h2><b>AstroCMS</b></h2>
 <h5>Created by Laxus(Back-End), Dut(Front-End), Claush(drawing)</h5>
