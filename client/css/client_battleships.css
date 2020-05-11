@@ -1,0 +1,61 @@
+.habbo-container {
+	min-width: 200px;
+	font-family: 'Ubuntu', sans-serif;
+	display: inline-block;
+	position: absolute
+}
+.habbo-container .habbo-container-header {
+    font-weight: 600;
+    font-size: 12.5px;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    background: rgba(4, 97, 118, 0.7);
+    border-radius: 8px 8px 0 0;
+    height: 18px;
+    line-height: 18px;
+    border-top: solid;
+    border-right: solid;
+    border-left: solid;
+    border-color: rgba(4, 148, 179, 0.4);
+    border-width: 2px;
+    font-family: Ubuntu;
+}
+.habbo-container .habbo-container-content {
+	background-color: #E9E9E2;
+	border-bottom: solid;
+	border-right: solid;
+	border-left: solid;
+	border-color: #fff;
+	border-width: 2px;
+	min-height: 200px;
+	border-radius: 0 0 6px 6px;
+	padding: 10px;
+	position: relative;
+}
+.habbo-container .habbo-container-content:before {
+	height: 1px;
+	background-color: #000;
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -2px;
+	right: -2px;
+}
+.habbo-container .habbo-container-close {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAE8AAAAUBAMAAAA+U32BAAAAD1BMVEUAAAAAAAANYXIQbYL////8bYg4AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiBAkJBiR6WIG7AAAAsUlEQVQoz52T0Q0DIQiGcQMxt4DGBZqboIb9Z6oKKsd5TVriA4TPP4AIgGwetrayLrHFW6aZI7Y3QBAwccrcOwqH5C1owkOi/BOYqzw9gpn66WB3JxgrixosJGCqblEgtqNAmmD1dY0YMKgaK1dGM01wgRFRN9NltoqpCW4VrzUaRVWj6drUqLo2c7x1PedoXsbM8Z8n/Aqu7cGT7bUFceyjByebirKp456EKmu+wlP4AbwjSgq8QcCDAAAAAElFTkSuQmCC);
+	width: 19px;
+	height: 20px;
+	background-position: 0 bottom;
+	image-rendering: pixelated;
+	position: absolute;
+	top: 7px;
+	right: 12px
+}
+.habbo-container .habbo-container-close:hover {
+	background-position: -60px bottom
+}
+.habbo-container .habbo-container-close:active {
+	background-position: -30px bottom
+}
