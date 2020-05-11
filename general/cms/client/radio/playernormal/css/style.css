@@ -1,0 +1,276 @@
+#area_player {
+    width: calc(100% - 200px);
+    font-family: "Ubuntu", sans-serif;
+    text-decoration: none;
+    color: #FFF;
+}
+
+#player {
+    background-color: red;
+    width: 266px;
+    float: left;
+}
+
+.player_min {
+    background-image: url(../img/bg_2.png);
+    width: 160px;
+    height: 45px;
+    position: absolute;
+    left: 80px;
+    top: -45px;
+    transition: all 0.5s;
+}
+
+#player.minimize .player_min {
+    top: 0px;
+}
+
+.player_min .guy {
+    background-image: url(../img/guy.png);
+    width: 31px;
+    height: 30px;
+    float: left;
+    margin: 10px 8px;
+    margin-bottom: 0;
+}
+
+.player_min .txt {
+    height: 40px;
+    line-height: 40px;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.player_min .handle {
+    background-image: url(../img/handle.png);
+    width: 22px;
+    height: 17px;
+    position: absolute;
+    right: 34px;
+    top: 11px;
+    cursor: e-resize;
+}
+
+.player_min .open {
+    background-image: url(../img/open.png);
+    width: 19px;
+    height: 20px;
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.player_min .open:hover {
+    background-position: center;
+}
+
+.player_min .open:active {
+    height: 19px;
+    top: 11px;
+    background-position: bottom;
+}
+
+.player {
+    background-image: url(../img/bg.png);
+    width: 272px;
+    height: 103px;
+    position: absolute;
+    float: left;
+    transition: all 0.5s;
+    top: 0px;
+}
+
+#player.minimize .player {
+    top: -103px;
+}
+.player .update {
+    background-image: url(../img/update.png);
+    background-position: left top;
+    width: 5px;
+    height: 5px;
+    float: left;
+    margin-left: -42px;
+    margin-top: 56px;
+}
+.player .room1 {
+    background-image: url(../img/room1.png);
+    background-position: right top;
+    width: 5px;
+    height: 5px;
+    float: right;
+    margin-right: -5px;
+    margin-top: 14px;
+}
+
+.player .play {
+    background-image: url(../img/play.png);
+    background-position: left top;
+    width: 10px;
+    height: 15px;
+    float: left;
+    margin-left: -54px;
+    margin-top: 61px;
+}
+
+.player .play:hover {
+    background-position: left bottom;
+}
+
+.player .pause {
+    background-image: url(../img/play.png);
+    background-position: right top;
+    width: 11px;
+    height: 15px;
+    float: left;
+    margin-left: -55px;
+    margin-top: 61px;
+}
+
+.player .pause:hover {
+    background-position: right bottom;
+}
+
+.player .orders {
+    background-image: url(../img/orders.png);
+    background-position: left top;
+    width: 22px;
+    height: 17px;
+    float: left;
+    margin-left: -22px;
+    margin-top: 60px;
+}
+
+/*.player .play:hover {
+    background-position: left bottom;
+}*/
+
+.player .plus {
+    background-image: url(../img/plus.png);
+    background-position: left top;
+    width: 21px;
+    height: 18px;
+    float: left;
+    margin-left: 17px;
+    margin-top: 20px;
+}
+
+.player .plus:hover {
+    background-position: left bottom;
+}
+
+.player .min {
+    background-image: url(../img/lower.png);
+    background-position: right top;
+    width: 22px;
+    height: 10px;
+    float: left;
+    margin-left: 17px;
+    margin-top: 24px;
+}
+
+.player .min:hover {
+    background-position: right bottom;
+}
+
+.player .separa {
+    width: 1px;
+    height: 52px;
+    float: left;
+    margin-left: 19px;
+    margin-top: 22px;
+    margin-right: 12px;
+}
+
+.player .info {
+    background-repeat: no-repeat;
+    background-position: 2px center;
+    width: 130px;
+    padding-left: 24px;
+    height: 19px;
+    line-height: 19px;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: left;
+    margin-top: 4px;
+}
+
+.player .locutor {
+    background-image: url(../img/mic.png);
+    background-position: left center;
+    margin-top: 16px;
+    margin-left: -4px;
+}
+
+.player .room {
+    background-image: url(../img/room.png);
+    background-position: left center;
+    margin-left: -4px;
+}
+
+.player .listeners {
+    background-image: url(../img/listeners.png);
+    background-position: left center;
+    margin-left: -4px;
+}
+
+.player .handle {
+    background-image: url(../img/handle.png);
+    width: 22px;
+    height: 17px;
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    cursor: e-resize;
+}
+
+.player .dev {
+    background-image: url(../img/dev.png);
+    width: 22px;
+    height: 17px;
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+}
+
+.player .close {
+    background-image: url(../img/close.png);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    cursor: pointer;
+}
+.player .twitter {
+    background-image: url(../img/twitter.png);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    cursor: pointer;
+}
+.player .site {
+    background-image: url(../img/site.png);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    right: 10px;
+    top: 35px;
+    cursor: pointer;
+}
+.player .music {
+    background-image: url(../img/music.png);
+    background-position: left center;
+    margin-left: -4px;
+}
+a:link, a:visited {
+    text-decoration: none;
+    color: #FFF;
+}
