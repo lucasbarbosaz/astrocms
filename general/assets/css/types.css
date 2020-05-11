@@ -1,0 +1,981 @@
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.padding-none {
+    padding: 0!important;
+}
+
+.padding-minm {
+    padding: 5px!important;
+}
+
+.padding-min {
+    padding: 10px!important;
+}
+
+.padding-md {
+    padding: 15px!important;
+}
+
+.padding-max {
+    padding: 20px!important;
+}
+
+.padding-minm-top-bottom {
+    padding: 5px 0!important;
+}
+
+.padding-min-top-bottom {
+    padding: 10px 0!important;
+}
+
+.padding-md-top-bottom {
+    padding: 15px 0!important;
+}
+
+.padding-max-top-bottom {
+    padding: 20px 0!important;
+}
+
+.padding-minm-left-right {
+    padding: 0 5px!important;
+}
+
+.padding-min-left-right {
+    padding: 0 10px!important;
+}
+
+.padding-md-left-right {
+    padding: 0 15px!important;
+}
+
+.padding-max-left-right {
+    padding: 0 20px!important;
+}
+
+.padding-top-none {
+    padding-top: 0px!important;
+}
+
+.padding-top-minm {
+    padding-top: 5px!important
+}
+
+.padding-top-min {
+    padding-top: 10px!important
+}
+
+.padding-top-md {
+    padding-top: 15px!important
+}
+
+.padding-top-max{
+    padding-top: 20px!important
+}
+
+.padding-left-minm {
+    padding-left: 5px!important
+}
+
+.padding-left-min {
+    padding-left: 10px!important
+}
+
+.padding-left-md {
+    padding-left: 15px!important
+}
+
+.padding-left-max {
+    padding-left: 20px!important
+}
+
+.padding-right-none {
+    padding-right: 0!important;
+}
+
+.padding-right-minm {
+    padding-right: 5px!important
+}
+
+.padding-right-min {
+    padding-right: 10px!important
+}
+
+.padding-right-md {
+    padding-right: 15px!important
+}
+
+.padding-right-max {
+    padding-right: 20px!important
+}
+
+.padding-bottom-none {
+    padding-bottom: 0!important;
+}
+
+.padding-bottom-minm {
+    padding-bottom: 5px!important
+}
+
+.padding-bottom-min {
+    padding-bottom: 10px!important
+}
+
+.padding-bottom-md {
+    padding-bottom: 15px!important
+}
+
+.padding-bottom-max {
+    padding-bottom: 20px!important
+}
+
+.margin-auto {
+    margin: auto!important;
+}
+
+.margin-auto-top-bottom {
+    margin: auto 0;
+}
+
+.margin-auto-left-right {
+    margin: 0 auto;
+}
+
+.margin-auto-left {
+    margin-left: auto!important;
+}
+
+.margin-auto-top {
+    margin-top: auto!important;
+}
+
+.margin-top-minm {
+    margin-top: 5px!important;
+}
+
+.margin-top-min {
+    margin-top: 10px!important;
+}
+
+.margin-top-md {
+    margin-top: 15px!important;
+}
+
+.margin-left-minm {
+    margin-left: 5px!important;
+}
+
+.margin-left-min {
+    margin-left: 10px!important;
+}
+
+.margin-left-md {
+    margin-left: 15px!important;
+}
+
+.margin-left-max {
+    margin-left: 20px!important;
+}
+
+.margin-top-max {
+    margin-top: 20px!important
+}
+
+.margin-auto-right {
+    margin-right: auto!important;
+}
+
+.margin-right-minm {
+    margin-right: 5px!important;
+}
+
+.margin-right-min {
+    margin-right: 10px!important;
+}
+
+.margin-right-md {
+    margin-right: 15px!important;
+}
+
+.margin-right-max {
+    margin-right: 20px!important;
+}
+
+.margin-top-bottom-min {
+    margin-top: 10px!important;
+    margin-bottom: 10px!important;
+}
+
+.margin-auto-bottom {
+    margin-bottom: auto!important;
+}
+
+.margin-bottom-minm {
+    margin-bottom: 5px!important
+}
+
+.margin-bottom-min {
+    margin-bottom: 10px!important;
+}
+
+.margin-bottom-md {
+    margin-bottom: 15px!important;
+}
+
+.margin-bottom-max {
+    margin-bottom: 20px!important;
+}
+
+.grid-template-rows {
+    display: grid;
+    grid-template-rows: max-content;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.border-box {
+    box-sizing: border-box;
+}
+
+.width-content {
+    width: 100%;
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+.reset-button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: unset;
+    outline: none;
+    font: unset;
+}
+
+.drop-shadow {
+    filter: drop-shadow(0 3px rgba(0, 0, 0, 0.1));
+    -webkit-filter: drop-shadow(0 3px rgba(0, 0, 0, 0.1));
+}
+
+.column-separator-top {
+    width: min-content;
+    margin: 5px 0 0 0;
+    float: left;
+}
+
+.column-separator-left {
+    width: min-content;
+    margin: 0 5px 0 0;
+    float: left;
+}
+
+.column-separator-right {
+    width: min-content;
+    margin: 0 0 0 5px;
+    float: right;
+}
+
+.column-separator-bottom {
+    width: min-content;
+    margin: 0 0 5px 0;
+    float: right;
+}
+
+.flex-wrap {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    float: left;
+}
+
+.no-appearance { 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.overflow-hidden {
+    overflow: hidden!important;
+}
+
+.general-white-box {
+    position: relative;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(212, 211, 209);
+    border-radius: 3px;
+    padding: 15px;
+}
+
+#general-white-box-header2 {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px solid rgb(212, 211, 209);
+    padding: 10px;
+    display: flex;
+}
+
+#general-white-box-header2-icon {
+    position: relative;
+    background: rgb(255, 255, 255);
+    border: 2px solid rgb(213, 212, 210);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    padding: 8px;
+    margin: 0 10px 0 0;
+    float: left;
+    display: flex;
+}
+
+#general-white-box-header2-icon icon[type="config"] {
+    position: relative;
+    background: url('../img/sprite.png?a') no-repeat -1509px -574px;
+    width: 28px;
+    height: 34px;
+    margin: 0 3px;
+}
+
+.general-error::before {
+    content: "";
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1425px -434px;
+    min-width: 12px;
+    height: 12px;
+    margin: auto 5px auto 0;
+}
+
+.general-error {
+    position: relative;
+    color: rgb(255, 0, 0);
+    display: flex;
+}
+
+.general-sucess::before {
+    content: "";
+    position: relative;
+    background: url(../img/sprite.png?1) no-repeat -1443px -618px;
+    min-width: 14px;
+    height: 12px;
+    margin: auto 5px auto 0;
+}
+
+.general-sucess {
+    position: relative;
+    color: rgb(54, 113, 14);
+    display: flex;
+}
+
+.general-error-time::before {
+    content: "";
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1442px -648px;
+    min-width: 15px;
+    height: 15px;
+    margin: auto 5px auto 0;
+}
+
+.general-error-time {
+    position: relative;
+    color: rgb(117, 76, 109);
+    display: flex;
+}
+
+icon[type="motto"] {
+    position: absolute;
+    background: url('../img/sprite.png') no-repeat -1504px -466px;
+    width: 15px;
+    height: 15px;
+    z-index: 1;
+}
+
+a.no-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a {
+    color: rgb(114, 137, 218);
+    cursor: pointer;
+}
+
+
+.text-nowrap {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.lowercase {
+    text-transform: lowercase;
+}
+
+.center-container {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Colors */
+
+.white {
+    color: rgb(255, 255, 255)!important;
+}
+
+.gray {
+    color: rgb(120, 120, 120);
+}
+
+.gray-clear {
+    color: rgb(153, 153, 151);
+}
+
+/* Colors */
+
+h1 {
+    font-weight: normal;
+    font-size: 32px;
+    margin: 0;
+}
+
+h2 {
+    font-weight: normal;
+    font-size: 24px;
+    margin: 0;
+}
+
+h3 {
+    font-weight: normal;
+    font-size: 19px;
+    margin: 0;
+}
+
+h4 {
+    font-weight: normal;
+    font-size: 16px;
+    margin: 0;
+}
+
+h5 {
+    font-weight: normal;
+    font-size: 13px;
+    margin: 0;
+}
+
+h6 {
+    font-weight: normal;
+    font-size: 11px;
+    margin: 0;
+}
+
+hr {
+    position: relative;
+    background: rgb(213, 212, 210);
+    width: 100%;
+    height: 1px;
+    border: unset;
+    margin: 0;
+}
+
+separator {
+    position: relative;
+    background: rgb(183, 183, 183);
+    width: 1px;
+    margin: 18px 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+label {
+    position: relative;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.italic {
+    font-style: italic!important;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.list-none {
+    list-style: none!important;
+}
+
+.flex {
+    display: flex!important;
+}
+
+.fs-12  {
+    font-size: 12px!important;
+}
+
+.fs-14  {
+    font-size: 14px!important;
+}
+
+.general-radius {
+    border-radius: 3px!important;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.total-content {
+    width: 100%;
+    height: 100%;
+}
+
+.pointer-none {
+    pointer-events: none;
+}
+
+.z-index {
+    z-index: 1;
+}
+
+.pink {
+    color: rgb(214, 0, 70)!important;
+}
+
+.break-word {
+    word-break: break-word;
+}
+
+.width-content {
+    width: 100%;
+}
+
+.height-content {
+    height: 100%;
+}
+
+.top-none {
+    top: 0;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.bg-1 {
+    background-color: rgb(245, 245, 245)!important; 
+}
+
+.bg-white {
+    background-color: rgb(255, 255, 255)!important; 
+}
+
+[disabled] {
+    filter: grayscale(100%);
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+[for="news"][curtido] [icon="heart-big-noborder"] {
+    background-position: -1238px -374px!important;
+}
+
+/* Icons */
+
+icon[icon="email"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -263px -84px;
+    width: 16px;
+    height: 14px;
+    z-index: 1;
+}
+
+icon[icon="ballon1"] {}
+
+icon[icon="lock1"] {
+    position: relative;
+    background: url(../img/sprite.png?) no-repeat -1417px -386px;
+    width: 15px;
+    height: 18px;
+    z-index: 1;
+}
+
+icon[icon="lock2"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1417px -407px;
+    width: 15px;
+    height: 16px;
+    z-index: 1;
+}
+
+icon[icon="lockg"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -52px -509px;
+    width: 35px;
+    height: 35px;
+    z-index: 1;
+}
+
+icon[icon="warning-blue"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1381px -620px;
+    width: 28px;
+    height: 30px;
+}
+
+icon[icon="frank-head"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -9px -508px;
+    width: 34px;
+    height: 37px;
+    z-index: 1;
+}
+
+icon[icon="ballong1"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1422px -666px;
+    width: 26px;
+    height: 31px;
+    z-index: 1;
+}
+
+icon[icon="head"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1473px -439px;
+    width: 25px;
+    height: 26px;
+    z-index: 1;
+}
+
+icon[icon="male"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -417px -186px;
+    width: 18px;
+    height: 18px;
+    z-index: 1;
+}
+
+icon[icon="female"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -401px -186px;
+    width: 14px;
+    height: 20px;
+    z-index: 1;
+}
+
+icon[icon="black-plataform"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -247px -153px;
+    width: 68px;
+    height: 41px;
+}
+
+icon[icon="crown"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1407px -433px;
+    width: 15px;
+    height: 13px;
+}
+
+icon[icon="credits"] {
+    position: relative;
+    background: url('../img/sprite.png?a') no-repeat -219px -62px;
+    width: 15px;
+    height: 15px;
+}
+
+icon[icon="rubys"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -219px -5px;
+    width: 15px;
+    height: 15px;
+}
+
+icon[icon="gems"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -220px -23px;
+    width: 13px;
+    height: 14px;
+}
+
+icon[icon="emeralds"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -220px -40px;
+    width: 13px;
+    height: 16px;
+}
+
+icon[icon="pen-mini"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1504px -466px;
+    width: 15px;
+    height: 15px;
+}
+
+icon[icon="vip-mini"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1513px -613px;
+    width: 22px;
+    height: 18px;
+}
+
+icon[icon="hotel1"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1241px -453px;
+    width: 16px;
+    height: 16px;
+}
+
+icon[icon="expand"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1183px -588px;
+    width: 16px;
+    height: 16px;
+}
+
+icon[icon="refresh"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1202px -588px;
+    width: 18px;
+    height: 16px;
+}
+
+icon[icon="clock1"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1442px -648px;
+    width: 15px;
+    height: 15px;
+}
+
+icon[icon="relation1"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1243px -397px;
+    width: 13px;
+    height: 13px;
+}
+
+icon[icon="relation2"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1243px -416px;
+    width: 13px;
+    height: 13px;
+}
+
+icon[icon="relation3"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1243px -435px;
+    width: 13px;
+    height: 13px;
+}
+
+icon[icon="achivements"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -310px -72px;
+    width: 17px;
+    height: 16px;
+}
+
+icon[icon="paper1"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1395px -569px;
+    width: 15px;
+    height: 16px;
+}
+
+icon[icon="friends"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1395px -474px;
+    width: 15px;
+    height: 16px;
+}
+
+icon[icon="link"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1395px -522px;
+    width: 15px;
+    height: 16px;
+    z-index: 1;
+}
+
+icon[icon="edit-habbo"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1419px -474px;
+    width: 15px;
+    height: 16px;
+}
+
+icon[icon="display-identity"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1407px -451px;
+    width: 16px;
+    height: 13px;
+}
+
+icon[icon="room"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -241px -61px;
+    width: 17px;
+    height: 16px;
+}
+
+icon[icon="badge-dev"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -433px -53px;
+    width: 37px;
+    height: 38px;
+}
+
+icon[icon="badge-ceo"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -473px -53px;
+    width: 37px;
+    height: 38px;
+}
+
+icon[icon="badge-ger"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -513px -53px;
+    width: 37px;
+    height: 38px;
+}
+
+icon[icon="badge-adm"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -553px -53px;
+    width: 37px;
+    height: 38px;
+}
+
+icon[icon="badge-mod"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -593px -53px;
+    width: 37px;
+    height: 38px;
+}
+
+icon[icon="help"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1340px -654px;
+    width: 34px;
+    height: 34px;
+}
+
+icon[icon="ballon-big1"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1345px -573px;
+    width: 26px;
+    height: 32px;
+}
+
+icon[icon="head-plus"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1482px -406px;
+    width: 17px;
+    height: 18px;
+    z-index: 1;
+}
+
+icon[icon="close"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1346px -612px;
+    width: 25px;
+    height: 25px;
+}
+
+icon[icon="duck"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -332px -48px;
+    width: 22px;
+    height: 23px;
+}
+
+icon[icon="heart-white"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -230px -131px;
+    width: 11px;
+    height: 10px;
+}
+
+icon[icon="heart-white2"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -216px -131px;
+    width: 12px;
+    height: 10px;
+}
+
+icon[icon="heart-big-noborder"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1238px -350px;
+    width: 22px;
+    height: 21px;
+    z-index: 1;
+}
+
+icon[icon="heart-big"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -1238px -374px;
+    width: 22px;
+    height: 20px;
+    z-index: 1;
+}
+
+icon[icon="head-mini"] {
+    position: relative;background: url('../img/sprite.png') no-repeat -243px -81px;
+    width: 16px;
+    height: 18px;
+    z-index: 1;
+}
+
+icon[icon="logo-big"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -5px -6px;
+    width: 205px;
+    height: 59px;
+    z-index: 1;
+}
+
+icon[icon="logo-mini"] {
+    position: relative;
+    background: url('../img/sprite.png') no-repeat -5px -69px;
+    width: 162px;
+    height: 46px;
+    z-index: 1;
+}
