@@ -1,0 +1,131 @@
+.carrega,
+.carrega .carrega-bg {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.carrega .carrega-error-color {
+    background: #250B0A
+}
+
+.carrega .carrega-bg {
+    background-image: url(/geral/client/img/fundo.png);
+    position: absolute;
+    background-size: cover;
+    image-rendering: optimizeSpeed;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated
+}
+
+.carrega .carrega-image {
+    background-image: url(/geral/client/img/logo.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 422px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    image-rendering: pixelated;
+    z-index: 200
+}
+.carrega-frank {
+    background-image: url(/geral/client/img/frank.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 422px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    image-rendering: pixelated;
+    z-index: 200
+}
+
+.carrega .carrega-loading {
+    position: absolute;
+    width: 450px;
+    top: 70%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center
+}
+
+.carrega .carrega-loading .carrega-loading-bar {
+    background-color: rgb(18, 18, 18);
+    border: 0px solid rgb(18, 18, 18);
+    border-radius: 2px;
+    padding: 3px;
+    height: 24px;
+    opacity: 0.5;
+    margin-bottom: 0px
+}
+
+.carrega .carrega-loading .carrega-loading-bar .carrega-loading-bar-inner-bar {
+
+    background: -moz-linear-gradient(top, rgb(104, 60, 136) 50%, rgb(104, 60, 136) 50%, rgb(104, 60, 136) 50%);
+    background: linear-gradient(to bottom, rgb(117, 68, 153) 50%, rgb(117, 68, 153) 50%, rgb(117, 68, 153) 50%);
+    height: 18px;
+    border-radius: 2px;
+    transition: width .4s ease-in-out;
+    width: 0
+}
+
+.carrega .carrega-loading .carrega-loading-heading {
+    color: #999;
+    font-size: 19.5pt;
+    margin-bottom: 10px;
+    font-weight: 500
+}
+
+.carrega .carrega-loading .carrega-loading-percentage {
+    color: #999;
+    margin-top: 9px;
+    font-weight: 500;
+    font-size: 10pt
+}
+
+.carrega .erro-img {
+    background-image: url(/geral/client/img/erro.png);width:220px;height:197px;opacity: 0.40; background-position:center center;background-repeat:no-repeat;position:absolute;top:35%;left:calc(50%);transform:translate(-50%,-50%);image-rendering:optimizeSpeed;image-rendering:crisp-edges;image-rendering:pixelated;z-index:200}
+
+        .carrega .carrega-error {
+        position: absolute;
+        width: 450px;
+        top: calc(35% + 120px);
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: #fff;
+        font-weight: 400;
+        font-size: 12pt;
+        max-width: calc(100% - 20px)
+    }
+
+    .carrega .carrega-error a {
+        color: #fff;
+        text-decoration: none !important;
+        border-bottom: 1px solid #fff;
+        padding-bottom: 2px
+    }
+
+    .carrega .carrega-error a:hover {
+        color: #e6e6e6
+    }
+
+    .carrega .carrega-error a:active {
+        border: none
+    }
+
+    .carrega .carrega-error .carrega-error-heading {
+        font-size: 22pt;
+        font-weight: 500
+    }
+
+    .carrega .carrega-error .carrega-error-muted {
+        font-size: 10pt;
+        margin-top: 10px
+    }
