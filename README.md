@@ -1,7 +1,7 @@
 
 ![](https://cdn.discordapp.com/attachments/639437005125582863/709405421298778243/unknown.png)
 <h2><b>AstroCMS</b></h2>
-<h5>Created by Laxus(Back-End), Dut(Front-End), Claush(drawing)</h5>
+<h5>Created by Laxus(Back-End), Dut(Front-End), Wake(drawing)</h5>
 **All rights reserved.**
 <hr>
 
@@ -19,7 +19,7 @@
 <h4>Created entirely using the PHP PDO function.</h4>
 <hr>
 <h2>Developers Contact</h2>
-<h4>Laxus: Email-> laxus@kopnetwork.com / Discord: laxus#0089</h4>
+<h4>Laxus: Email-> laxus@kopnetwork.com / Discord-> laxus#0089</h4>
 <h4>Dut: Email-> dut.developer@gmail.com / Discord-> Dut#4546</h4>
-<h4>Wake: Discord-> Wake#8598</h4>
+<h4>Wake: Email-> developer.wake@gmail.com / Discord-> Wake#8598</h4>
 <hr>
