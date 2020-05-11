@@ -1,0 +1,35 @@
+RewriteEngine On
+
+RewriteRule ^(|/)$ index.php
+RewriteRule ^index(|/)$ index.php
+RewriteRule ^registro(|/)$ registro.php
+RewriteRule ^sair(|/)$ /general/cms/sair.php
+RewriteRule ^principal(|/)$ /general/cms/principal.php
+RewriteRule ^noticia/(..*)(|/)$ /general/cms/noticia.php?id=$1
+RewriteRule ^comunidade(|/)$ /general/cms/comunidade.php
+RewriteRule ^comunidade/halldafama(|/)$ /general/cms/comunidade/fama.php
+RewriteRule ^comunidade/halldafama/fama(|/)$ /general/cms/comunidade/fama.php
+RewriteRule ^comunidade/halldafama/jogadores(|/)$ /general/cms/comunidade/jogadores.php
+
+RewriteRule ^loja(|/)$ /general/cms/loja/informacoes.php
+RewriteRule ^loja/informacoes(|/)$ /general/cms/loja/informacoes.php
+RewriteRule ^loja/vip(|/)$ /general/cms/loja/vip.php
+RewriteRule ^loja/cash(|/)$ /general/cms/loja/cash.php
+
+RewriteRule ^comunidade/equipe(|/)$ /general/cms/comunidade/equipe.php
+
+RewriteRule ^configuracoes(|/)$ /general/cms/configuracoes/email.php
+RewriteRule ^configuracoes/email(|/)$ /general/cms/configuracoes/email.php
+RewriteRule ^configuracoes/senha(|/)$ /general/cms/configuracoes/senha.php
+
+RewriteRule ^perfil/(..*)(|/)$ /general/cms/perfil.php?user=$1
+
+RewriteRule ^client/jogar(|/)$ /general/client/client.php
+
+RewriteRule ^hk/index(|/)$ /hk/index.php
+
+RewriteRule ^housekeeping(|/)$ /housekeeping/index.php
+
+RewriteRule ^(|/)$ /general/cms/.php
+
+ErrorDocument 404 /error.php
