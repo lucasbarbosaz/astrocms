@@ -21,6 +21,7 @@
 			} else {
 			$sql_b = $bdd->query("SELECT * FROM bans WHERE data= '".safe($username,'SQL')."'");
 			$b = $sql_b->fetch(PDO::FETCH_ASSOC);
+			$r = $sql_b->rowCount();
 
 			@$stamp_now = mktime(date('H:i:s d-m-Y'));
 			$stamp_expire = $b['expire'];
@@ -29,11 +30,17 @@
 			if(@$stamp_now < @$stamp_expire){
 			throw new Exception('Sua conta foi banida por '.$b['added_by'].' pelo seguinte motivo: '.$b['reason'].'. Este expirará em '.date_fr("d M. Y H:i:s", $b['expire']).'.');
 			} else {
-			if(mysql_num_rows($sql_b) > 0){
-			mysql_query("DELETE FROM bans WHERE data = '".safe($username,'SQL')."'");
+			if($r > 0){
+			$query = $bdd->prepare("DELETE FROM bans WHERE data = ?");
+			$query->bindValue(1, safe($username,'SQL'));
+			$query->execute();
 			}
-			if(mysql_num_rows($verif_user) == 1){
-			mysql_query("UPDATE players SET last_offline = '".time()."' WHERE username = '".safe($username,'SQL')."'");
+				
+			if($verif_user->rowCount() == 1){
+			$laxus = $bdd->prepare("UPDATE players SET last_offline = ? WHERE username = ?");
+			$laxus->bindValue(1, time());
+			$laxus->bindValue(2, safe($username, 'SQL'));
+			$laxus->execute()
 			$_SESSION['username'] = $assoc_user['username'];
 			$_SESSION['password'] = $password;
 			if($admin == 'false') {
@@ -51,8 +58,12 @@
 
 		public function BanIP($table, $ip, $pageid)
 		{
-			$verif_banip_sql = mysql_query("SELECT * FROM bans WHERE data = '".$username."' AND type = 'ip'");
-			if(mysql_num_rows($verif_banip_sql) >= 1){
+			$verif_banip_sql = $bdd->prepare("SELECT * FROM bans WHERE data = ? AND type = ?");
+			$verif_banip_sql->bindValue(1, $username);
+			$verif_banip_sql->bindValue(2, 'ip');
+			$verif_banip_sql->execute();
+			$row_bans = $verif_banip_sql->rowCount();
+			if($row_bans >= 1){
 			session_destroy();
 			if($pageid != "ban") {
 			Redirect(URL."/account/banned");
