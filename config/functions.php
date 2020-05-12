@@ -35,16 +35,11 @@ function Redirect($url)
 
 function hybbe($str)
 {
-    $tmp = mysql_query("SELECT " . safe($str, 'SQL') . " FROM hybbe_geral LIMIT 1") or die(mysql_error());
-    $tmp = mysql_fetch_assoc($tmp);
+    $tmp2 = $bdd->query("SELECT " . safe($str, 'SQL') . " FROM hybbe_geral LIMIT 1");
+    $tmp = $tmp2->fetch(PDO::FETCH_ASSOC);
     return $tmp[$str];
 }
-function swazzy($str)
-{
-    $tmp = mysql_query("SELECT " . safe($str, 'SQL') . " FROM players LIMIT 1") or die(mysql_error());
-    $tmp = mysql_fetch_assoc($tmp);
-    return $tmp[$str];
-}
+
 function MUS($command, $data = '')
 {
     $mus_ip   = Serveur('Host');
@@ -256,7 +251,10 @@ function TicketRefresh($username)
         $base = uniqid($base);
     }
     endfor;
-    $request = mysql_query("UPDATE players SET auth_ticket = '" . safe($base, 'SQL') . "' WHERE username = '" . safe($username, 'SQL') . "' LIMIT 1");
+    $request = $bdd->prepare("UPDATE players SET auth_ticket = ? WHERE username = ? LIMIT 1");
+    $request->bindValue(1, safe($base, 'SQL'));
+    $request->bindValue(2, safe($username, 'SQL'));
+    $request->execute();
     return $base;
 }
 
@@ -273,58 +271,58 @@ function str_contains($haystack, $needle, $ignoreCase = false)
 function suppr_accents($chaine)
 {
     $accents = array(
-        '¿',
-        '¡',
-        '¬',
-        '√',
-        'ƒ',
-        '≈',
-        '«',
-        '»',
-        '…',
-        ' ',
-        'À',
-        'Ã',
-        'Õ',
-        'Œ',
-        'œ',
-        '“',
-        '”',
-        '‘',
-        '’',
-        '÷',
-        'Ÿ',
-        '⁄',
-        '€',
-        '‹',
-        '›',
-        '‡',
-        '·',
-        '‚',
-        '„',
-        '‰',
-        'Â',
-        'Á',
-        'Ë',
-        'È',
-        'Í',
-        'Î',
-        'Ï',
-        'Ì',
-        'Ó',
-        'Ô',
-        '',
-        'Ú',
-        'Û',
-        'Ù',
-        'ı',
-        'ˆ',
-        '˘',
-        '˙',
-        '˚',
-        '¸',
-        '˝',
-        'ˇ'
+        '√Ä',
+        '√Å',
+        '√Ç',
+        '√É',
+        '√Ñ',
+        '√Ö',
+        '√á',
+        '√à',
+        '√â',
+        '√ä',
+        '√ã',
+        '√å',
+        '√ç',
+        '√é',
+        '√è',
+        '√í',
+        '√ì',
+        '√î',
+        '√ï',
+        '√ñ',
+        '√ô',
+        '√ö',
+        '√õ',
+        '√ú',
+        '√ù',
+        '√†',
+        '√°',
+        '√¢',
+        '√£',
+        '√§',
+        '√•',
+        '√ß',
+        '√®',
+        '√©',
+        '√™',
+        '√´',
+        '√¨',
+        '√≠',
+        '√Æ',
+        '√Ø',
+        '√∞',
+        '√≤',
+        '√≥',
+        '√¥',
+        '√µ',
+        '√∂',
+        '√π',
+        '√∫',
+        '√ª',
+        '√º',
+        '√Ω',
+        '√ø'
     );
     $sans    = array(
         'A',
@@ -394,37 +392,39 @@ function LastOnline($a){
             $date = $a;
             $date_now = time();
             $difference = $date_now - $date;
-            if($difference <= '59'){ $echo = 'h· '; }
+            if($difference <= '59'){ $echo = 'h√° '; }
             elseif($difference <= '3599' && $difference >= '60'){
                 $minutos = date('i', $difference);
                 if($minutos[0] == 0) { $minutos = $minutos[1]; }
                 if($minutos == 1) { $minutos_str = 'minuto'; }
                 else { $minutos_str = 'minutos'; }
-                $echo = 'h· '.$minutos.' '.$minutos_str;//Minutos
+                $echo = 'h√° '.$minutos.' '.$minutos_str;//Minutos
             }elseif($difference <= '82799' && $difference >= '3600'){
                 $horas = date('G', $difference);
                 if($horas == 1) { $horas_str = 'hora'; }
                 else { $horas_str = 'horas'; }
-                $echo = 'h· '.$horas.' '.$horas_str;//Minutos
+                $echo = 'h√° '.$horas.' '.$horas_str;//Minutos
             }elseif($difference <= '518399' && $difference >= '82800'){
                 $dias = date('j', $difference);
                 if($dias == 1) { $dias_str = 'dia'; }
                 else { $dias_str = 'dias'; }
-                $echo = 'h· '.$dias.' '.$dias_str;//Minutos
+                $echo = 'h√° '.$dias.' '.$dias_str;//Minutos
             }elseif($difference <= '2678399' && $difference >= '518400'){
                 $semana = floor(date('j', $difference) / 7).'<!-- WTF -->';
                 if($semana == 1) { $semana_str = 'semana'; }
                 else { $semana_str = 'semanas'; }
-                $echo = 'h· '.floor($semana).' '.$semana_str;//Minutos
-            }else { $echo = 'h· '.date('n', $difference).' mÍs(es)'; }
+                $echo = 'h√° '.floor($semana).' '.$semana_str;//Minutos
+            }else { $echo = 'h√° '.date('n', $difference).' m√™s(es)'; }
             return $echo;
         }else{ return $a; }
-    }else{ return 'N„o est· conectado'; }
+    }else{ return 'N√£o est√° conectado'; }
 }
 
 function Onlines(){
     global $bdd;
-    $onlines = $bdd->query("SELECT * FROM players WHERE online = '1'");
+    $onlines = $bdd->prepare("SELECT * FROM players WHERE online = ?");
+    $onlines->bindValue(1, '1');
+    $onlines->execute();
     $online = $onlines->rowCount();
 
     if ($online >= 50) {
@@ -463,15 +463,15 @@ function FilterLink($a){
     $a = str_replace(" ", "-", $a); 
     $a = str_replace("[", "(", $a); 
     $a = str_replace("]", ")", $a); 
-    $a = str_replace("·", "a", $a);
-    $a = str_replace("È", "e", $a);
-    $a = str_replace("Ì", "i", $a);
-    $a = str_replace("Û", "o", $a);
-    $a = str_replace("˙", "u", $a);
+    $a = str_replace("√°", "a", $a);
+    $a = str_replace("√©", "e", $a);
+    $a = str_replace("√≠", "i", $a);
+    $a = str_replace("√≥", "o", $a);
+    $a = str_replace("√∫", "u", $a);
     $a = str_replace("!", "", $a);
-    $a = str_replace("°", "", $a);
+    $a = str_replace("¬°", "", $a);
     $a = str_replace("?", "", $a);
-    $a = str_replace("ø", "", $a);
+    $a = str_replace("¬ø", "", $a);
     $a = str_replace("/", "", $a);
     $a = str_replace(".", "", $a);
     $a = str_replace(",", "", $a);
@@ -480,9 +480,9 @@ function FilterLink($a){
     $a = str_replace("I", "i", $a);
     $a = str_replace("O", "o", $a);
     $a = str_replace("U", "u", $a);
-    $a = str_replace("Á", "c", $a);
+    $a = str_replace("√ß", "c", $a);
     $a = str_replace("P", "p", $a);
-    $a = str_replace("ı", "o", $a);
+    $a = str_replace("√µ", "o", $a);
     return $a;
 }
 
