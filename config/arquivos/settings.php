@@ -6,7 +6,9 @@
 		}
 
 		if($error == false) {
-			$bdd->query("UPDATE players SET motto = '" . $_POST['motto'] . "' LIMIT");
+			$send = $bdd-prepare("UPDATE players SET motto = ? LIMIT 1 ");
+			$send->bindValue(1, $_POST['motto']);
+			$send->execute();#
 		}
 		Redirect(URL."/configuracoes?salvo");
 	}
