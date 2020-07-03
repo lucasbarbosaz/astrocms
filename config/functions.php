@@ -10,7 +10,7 @@ function safe($val, $type = 'SQL')
     } else if ($type == 'SQL') {
         if (get_magic_quotes_gpc())
             $val = stripslashes($val);
-        return mysql_real_escape_string($val);
+        return $val;
     }
     return (false);
 }
@@ -35,8 +35,10 @@ function Redirect($url)
 
 function hybbe($str)
 {
+    global $bdd;
     $tmp2 = $bdd->query("SELECT " . safe($str, 'SQL') . " FROM hybbe_geral LIMIT 1");
     $tmp = $tmp2->fetch(PDO::FETCH_ASSOC);
+
     return $tmp[$str];
 }
 
@@ -178,8 +180,7 @@ function tabelaexiste($table)
     global $bdd;
     try {
         $result = $bdd->query("SELECT 1 FROM $table LIMIT 1");
-    }
-    catch (Exception $e) {
+    }catch (Exception $e) {
         return FALSE;
     }
     return $result !== FALSE;
@@ -226,13 +227,14 @@ function UpdateSSO($id) {
     
     $myticket = GenerateRandom();
 
-    if(mysql_query("DESCRIBE players")) {
+    if($bdd->query("DESCRIBE players")) {
         $req = $bdd->prepare("SELECT * FROM players WHERE id =:id");
         $req->execute(Array(":id" => $id));
         if ($req->rowCount() > 0) {
             $remote_ip = getenv("HTTP_X_FORWARDED_FOR");
-            $req = $bdd->prepare("UPDATE players SET auth_ticket = '".$myticket."' WHERE id = :id");
-            $req->execute(Array(":id" => $id));
+            $req = $bdd->prepare("UPDATE players SET auth_ticket = '".$myticket."' WHERE id = ?");
+            $req->bindValue(1, $id);
+            $req->execute();
         } else {
             $req = $bdd->prepare("UPDATE players SET auth_ticket = '".$myticket."' WHERE id = :id");
             $req->execute(Array(":id" => $id));
@@ -246,6 +248,7 @@ function UpdateSSO($id) {
 
 function TicketRefresh($username)
 {
+    global $bdd;
     for ($i = 1; $i <= 3; $i++): {
         $base = $base . rand(0, 99);
         $base = uniqid($base);
@@ -484,6 +487,30 @@ function FilterLink($a){
     $a = str_replace("P", "p", $a);
     $a = str_replace("õ", "o", $a);
     return $a;
+}
+
+ function IP(){
+    if(!empty($_SERVER['HTTP_CF_CONNECTING_IP'])){
+        $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+    }else if(!empty($_SERVER['HTTP_INCAP_CLIENT_IP'])){
+        $ip = $_SERVER['HTTP_INCAP_CLIENT_IP'];
+    }else if(!empty($_SERVER['HTTP_X_SUCURI_CLIENTIP'])){
+        $ip = $_SERVER['HTTP_X_SUCURI_CLIENTIP'];
+    }else if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    }else if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }else if (!empty($_SERVER['HTTP_X_FORWARDED'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED'];
+    }else if (!empty($_SERVER['HTTP_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_FORWARDED_FOR'];
+    } else if (!empty($_SERVER['HTTP_FORWARDED'])) {
+        $ip = $_SERVER['HTTP_FORWARDED'];
+    } else if (!empty($_SERVER['REMOTE_ADDR'])) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+
+    return $ip;
 }
 
 ?>
