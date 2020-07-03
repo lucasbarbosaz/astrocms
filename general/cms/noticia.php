@@ -2,18 +2,49 @@
 	session_start();
 	require_once ("../../geral.php");
 
-	if(isset($_GET['id']) && is_numeric($_GET['id'])) {
-		$news_id = $_GET['id'];
-	} else {
-		$sql = $bdd->query("SELECT * FROM habbo_news WHERE id != '-344' ORDER BY id DESC LIMIT 1");
-		$swazzy = $sql->fetch(PDO::FETCH_ASSOC);
-		$locations = $swazzy['id'];
-		header("Location: $path/noticia/$locations");
+	if(isset($_GET['article_id']) && is_numeric($_GET['article_id'])) {
+		$consult_article = $bdd->prepare("SELECT id,title,stext,btext,category,time,time_expire,image_url,autor,formulario,comentarios,draft FROM habbo_news WHERE id = ? LIMIT 1");
+		$consult_article->bindValue(1, $_GET['article_id']);
+		$consult_article->execute();
+
+		$consult_has_article = $bdd->prepare("SELECT * FROM habbo_news");
+		$consult_has_article->execute();
+
+		if($consult_has_article->rowCount() > 0) {
+			if($consult_article->rowCount() > 0){
+				$result_article = $consult_article->fetch(PDO::FETCH_ASSOC);
+
+				if($result_article['draft'] == 1 && $user['rank'] < 8) {
+					$consult_last_article_no_draft = $bdd->prepare("SELECT id FROM habbo_news WHERE draft != 1 ORDER BY time DESC LIMIT 1");
+					$consult_last_article_no_draft->execute();
+
+					$result_last_article_no_draft = $consult_last_article_no_draft->fetch(PDO::FETCH_ASSOC);
+					Redirect(URL.'/noticia/'. $result_last_article_no_draft['id']);
+				}
+
+				$consult_author = $bdd->prepare("SELECT username,figure FROM users WHERE id = ?");
+				$consult_author->bindValue(1, $result_article['autor']);
+				$consult_author->execute();
+				$result_author = $consult_author->fetch(PDO::FETCH_ASSOC);
+
+				$consult_news_like = $bdd->prepare("SELECT * FROM cms_reactions WHERE article_id = ?");
+				$consult_news_like->bindValue(1, $result_article['id']);
+				$consult_news_like->execute();
+
+				if(isset($user['username'])) {
+					$consult_news_liked = $bdd->prepare("SELECT * FROM cms_reactons WHERE article_id = ? AND user_id = ?");
+					$consult_news_liked->bindValue(1, $result_article['id']);
+					$consult_news_liked->bindValue(2, $user['id']);
+					$consult_news_liked->execute();
+				}
+
+
+			}
+		}
 	}
 
-    $bdd->query("UPDATE habbo_news SET views = views + 1 WHERE id = '$news_id'");
 
-    $useradmin_s = $bdd->query("SELECT * FROM players WHERE username = '" . $_SESSION['username'] . "'");
+    /*$useradmin_s = $bdd->query("SELECT * FROM players WHERE username = '" . $_SESSION['username'] . "'");
     $useradmin = $useradmin_s->fetch(PDO::FETCH_ASSOC);
 
     $figure_s = $bdd->query("SELECT * FROM players WHERE figure = '". $_POST['figure'] . "'");
@@ -27,14 +58,14 @@
 
 	$figure_autor = $bdd->query("SELECT * FROM players WHERE username='" . $noticia['autor'] . "'");
 	$autor = $figure_autor->fetch(PDO::FETCH_ASSOC);
-
+	*/
 
 	$palavrasbloqueadas=file_get_contents('/PalavrasBloqueadas.txt');
 
 
 
 	$page = "noticias";
-	$page_name = "" . $noticia['title'] . "";
+	//$page_name = "" . $noticia['title'] . "";
 
 	include('../../config/includes/head.php');
 ?>
@@ -52,31 +83,31 @@
 							<div id="news-container">
 								<div id="news-content">
 									<div class="flex" id="news-header">
-										<div class="margin-right-md" id="news-thumbnail" style="background-image: url('<?php echo $noticia['image_url']; ?>')">
+										<div class="margin-right-md" id="news-thumbnail" style="background-image: url('<?= $result_article['image_url'];?>)">
 											<div class="margin-auto-left-right" id="news-habbo-author">
-												<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $autor['figure']; ?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=3&action=std">
+												<img src="<?php echo $hotel['avatarimage']; ?>figure=<?= $result_article['figure'];?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=3&action=std">
 											</div>
 										</div>
 										<label class="gray flex-column margin-auto-top-bottom width-content margin-right-md" id="news-header-label">
-											<h3 class="bold"><?php echo $noticia['title']; ?></h3>
-										<?php if ($noticia['stext'] != '' || $noticia['stext'] != NULL) { ?>
-											<h5><?php echo $noticia['stext']; ?></h5>
+											<h3 class="bold"><?= $result_article['title'];?></h3>
+										<?php if ($result_article['stext'] != '' || $result_article['stext'] != NULL) { ?>
+											<h5><?= $result_article['stext'];?></h5>
 										<?php } ?>
 											<div class="margin-top-minm">
-												<h6>Noticia postada por: <a href="<?php echo $hotel['site']; ?>/perfil/<?php echo $noticia['autor']; ?>" class="bold no-link"><?php echo $noticia['autor']; ?></a> em <?php echo strftime('%d de %B de %Y', $noticia['time']); ?> as <?php echo strftime('%H:%M', $noticia['time']); ?> na categoria <b><?php echo $noticia['category']; ?></b>.</h6>
+												<h6>Noticia postada por: <a href="<?php echo $hotel['site']; ?>/perfil/<?= $result_author['username'];?>" class="bold no-link"><?= $result_author['username'];?></a> em <?php echo strftime('%d de %B de %Y', $noticia['time']); ?> às <?= strftime('%H:%M', $result_article['time']); ?> na categoria <b><?= $result_article['category']; ?></b>.</h6>
 											</div>
 										</label>
 									</div>
 										<hr>
-									<div id="news-body"><?php echo $noticia['btext']?></div>
+									<div id="news-body"><?= $result_article['btext'];?></div>
 										<hr>
 									<div class="padding-min flex-between">
-									<?php if ($noticia['formulario'] == 1) { ?>
+									<?php if ($result_article['formulario'] == 1) { ?>
 										<button class="reset-button flex-wrap padding-left-min padding-right-min" id="news-open-form">
 											<icon icon="duck" class="margin-right-min"></icon>
 											<h5 class="white margin-auto-top-bottom">Formulário</h5>
 										</button>
-									<?php } else if ($noticia['formulario'] == 2) { ?>
+									<?php } else if ($result_article['formulario'] == 2) { ?>
 										<button class="reset-button flex-wrap padding-left-min padding-right-min" id="news-open-form" disabled>
 											<icon icon="duck" class="margin-right-min"></icon>
 											<h5 class="white margin-auto-top-bottom">Formulário indisponível</h5>
@@ -88,67 +119,13 @@
 										</div>
 									<?php } ?>
 										<div class="margin-auto-left margin-auto-top-bottom" id="news-interaction-area">
-									<?php
-
-										// Se o usuário estiver logado, oque estiver no if será verdadeiro. Se não, o botão de like não aparecerá
-										if($_SESSION['username']) {
-											$idnoticia = $_GET['id'];
-											$consulta = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-
-											$consulta2 = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-											$row = $consulta2->fetch(PDO::FETCH_ASSOC);
-
-											if ($consulta->rowCount() <= 0) {
-												$like_type = 'curtir';
-											} else if ($row['status'] == '1') {
-												$like_type = 'curtido';
-											} else if ($row['status'] == '0') {
-												$like_type = 'curtir';
-											}
-
-											// Se o resultado da consulta for menor ou igual 0, ou seja, se não existir uma consulta. Oque estiver no if será executado.
-											if ($consulta->rowCount() <= 0) {
-												if (isset($_POST['curtir'])) {
-													$idnoticia = $_GET['id'];
-													$consultar_noticia = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-													$result = $consultar_noticia->fetch(PDO::FETCH_ASSOC);
-
-													$bdd->query("INSERT INTO hybbe_curtidas (id_post, usercurtiu, status) VALUES ('" . $idnoticia . "', '" . $user['id'] . "', '1')");
-													$like_type = 'curtido';
-													$likes_count+1;
-												}
-											} else if ($consulta->rowCount() > 0 && $row['status'] == '1') {
-												if (isset($_POST['curtido'])) {
-													$idnoticia = $_GET['id'];
-													$consultar_noticia = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-													$result = $consultar_noticia->fetch(PDO::FETCH_ASSOC);
-
-													$bdd->query("UPDATE hybbe_curtidas SET status='0' WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-													$like_type = 'curtir';
-													$likes_count-1;
-												}
-											} else if ($consulta->rowCount() > 0 && $row['status'] == '0') {
-												if (isset($_POST['curtir'])) {
-													$idnoticia = $_GET['id'];
-													$consultar_noticia = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-													$result = $consultar_noticia->fetch(PDO::FETCH_ASSOC);
-
-													$bdd->query("UPDATE hybbe_curtidas SET status='1' WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
-													$like_type = 'curtido';
-													$likes_count+1;
-												}
-											}
-
-											$consulta_likes = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND status='1'");
-											$likes_count = $consulta_likes->rowCount();
-										}
-									?>  
+									<?php if(isset($user['username']) && $consult_news_liked->rowCount() > 0){?>
 											<div class="flex margin-auto-top-bottom">
 												<label class="flex-column pointer-none" for="news" <?php echo $like_type; ?>>
 													<icon icon="heart-big-noborder" class="margin-auto-left-right"></icon>
-													<h5 class="pink"><?php echo $likes_count; ?> likes</h5>
+													<h5 class="pink"><?= $consult_news_like->rowCount();?> likes</h5>
+													<?php }?>
 												</label>
-												<form action="<?php echo $hotel['site']; ?>/noticia/<?php echo $idnoticia; ?>" method="post" class="absolute total-content">
 													<button type="submit" class="reset-button absolute total-content" name="<?php echo $like_type; ?>" id="news-interaction-like" <?php echo $like_type; ?>></button>
 												</form>
 											</div>
@@ -156,46 +133,27 @@
 									</div>
 								</div>
 								<div class="margin-top-min">
-								<?php if($noticia['comentarios'] == 1) { ?>
-									<?php
-
-										$idPost = $_GET['id'];
-										$consulta = $bdd->query("SELECT * FROM habbo_news WHERE id='" . $idPost . "'");
-										$consulta_comentario = $bdd->query("SELECT * FROM hybbe_comentarios WHERE id_post='" . $idPost . "' AND autor='" . $user['id'] . "' ORDER BY data DESC");
-										$resultado = $consulta_comentario->fetch(PDO::FETCH_ASSOC);
-
-											if (isset($_POST['comentar'])) {
-
-												if ($resultado['data'] >= time() - 300) {
-													$error = true;
-												} else {
-													$idPost = $_GET['id'];
-													$comentario = $_POST['comentario'];
-													$autor = $user['id'];
-													$data = time();
-
-													$comentar = $bdd->query("INSERT INTO hybbe_comentarios (id_post, comentario, autor, data) VALUES('" . $idPost . "', '" . $comentario . "', '" . $autor . "', '" . $data . "')");
-												}
-											}
-									?>
+								<?php if($result_article['comentarios'] == 1){ ?>
 									<div id="news-new-comment">
+										<?php if(isset($_SESSION['username'])){?>
 										<div id="news-new-comment-habbo">
-											<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $useradmin['figure'];?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std"/>
+											<img src="<?= $user['username'];?>figure=<?= $user['figure'];?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std"/>
 										</div>
 										<form action="<?php echo $hotel['site']; ?>/noticia/<?php echo $idPost; ?>" method="POST" class="flex-column">
 											<div class="flex-wrap margin-auto-top-bottom">
 												<div class="margin-left-minm margin-right-max" id="news-new-comment-area">
 													<textarea name="comentario" class="emojis" id="news-new-comment-text-area" placeholder="Digite algo para comentar..."></textarea>
 												</div>
-												<button class="reset-button margin-left-min" type="submit" name="comentar" id="news-comment-button">Comentar</button>
+												<button data-article-id="<?= $result_article['id'];?>" class="reset-button margin-left-min" type="submit" name="comentar" id="news-comment-button">Comentar</button>
                                         	</div>
                                         	<?php if ($error == true) { ?>
-											<label class="general-error absolute pointer-none" style="left: 12px;bottom: 15px;">
+									 		<label class="general-error absolute pointer-none" style="left: 12px;bottom: 15px;">
 												<h6 class="bold">Você deve esperar 5 minutos para enviar outro comentário!</h6>
 											</label>
                                         	<?php } ?>
                                         </form>
 									</div>
+								<?php } ?>
 								<?php
 
 									$consulta = $bdd->query("SELECT * FROM hybbe_comentarios WHERE id_post = '" . $idPost . "' ORDER BY data DESC");
