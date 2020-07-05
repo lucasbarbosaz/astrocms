@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0);
 	ini_set(“display_errors”, 0 );
-	$pageid = "index";
+	$pageid = "registro";
 	require_once './geral.php';
 	require_once './config/arquivos/registro.php';
 	require_once './config/class.recaptchalib.php';
@@ -13,11 +13,11 @@
 	<head>
 		<meta charset="utf-8">
 		<title><?php echo $hotel['hotelname']; ?> - Faça amigos, divirta-se e seja famoso!</title>
-		<link rel="shortcut icon" href="http://localhost/favicon.ico?<?php echo time(); ?>">
-		<link rel="stylesheet" href="http://localhost/general/assets/css/style.css?<?php echo time(); ?>" type="text/css" media="all" />
-		<link rel="stylesheet" href="http://localhost/general/assets/css/types.css?<?php echo time(); ?>" type="text/css" media="all" />
-		<link rel="stylesheet" href="http://localhost/general/assets/css/buttons.css?<?php echo time(); ?>" type="text/css" media="all" />
-		<link rel="stylesheet" href="http://localhost/general/assets/css/fonts.css?<?php echo time(); ?>" type="text/css" media="all" />
+		<link rel="shortcut icon" href="<?php echo $hotel['site'];?>/favicon.ico?<?php echo time(); ?>">
+		<link rel="stylesheet" href="<?php echo $hotel['site'];?>/general/assets/css/style.css?<?php echo time(); ?>" type="text/css" media="all" />
+		<link rel="stylesheet" href="<?php echo $hotel['site'];?>/general/assets/css/types.css?<?php echo time(); ?>" type="text/css" media="all" />
+		<link rel="stylesheet" href="<?php echo $hotel['site'];?>/general/assets/css/buttons.css?<?php echo time(); ?>" type="text/css" media="all" />
+		<link rel="stylesheet" href="<?php echo $hotel['site'];?>/general/assets/css/fonts.css?<?php echo time(); ?>" type="text/css" media="all" />
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap" rel="stylesheet">
 	</head>
 	<body class="grid-template-rows">
@@ -36,7 +36,7 @@
 							<div id="index-greeting-icon"></div>
 							<div id="index-greeting-label">Seja bem-vindo ou vinda! Atualmente temos <b>0</b> usuários online, que tal se registrar e se juntar a nós e ver tudo oque temos para lhe oferecer?</div>
 						</div>
-						<form class="margin-none padding-none login" method="post" role="form" method="POST" id="register-form">
+						<form class="margin-none padding-none login" role="form" method="POST" id="register-form">
 							<div class="column-separator-left" style="width: 350px">
 							<?php if(isset($erros)) { ?>
 								<div class="error" id="register-area-header">
@@ -129,6 +129,7 @@
 											<div class="margin-top-min" id="register-captcha">
 												<div class="g-recaptcha" data-sitekey="<?php echo hybbe('recaptcha'); ?>"></div>
 											</div>
+										
 											<div class="margin-top-min">
 												<button class="green-button" type="submit" style="width: 242px;height: 47px;font-size: 15px;">
 													<div class="margin-auto white"><b>Vamos nessa!</b></div>
