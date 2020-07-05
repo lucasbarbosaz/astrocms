@@ -20,10 +20,7 @@ if (function_exists('date_default_timezone_set')) {
 }
 if (!defined('_MYSQL_REAL_ESCAPE_STRING_'))
     define('_MYSQL_REAL_ESCAPE_STRING_', function_exists('mysql_real_escape_string'));
-if (MODE_DEV == '1') {
-    ini_set("display_errors", 0);
-    error_reporting(0);
-}
+
 
 define('URL', hybbe('site'));
 define('UPDATE', mt_rand(500, 999));
@@ -33,14 +30,17 @@ require_once PATH . 'config/classes/class.db.php';
 require_once PATH . 'config/classes/class.config.php';
 require_once PATH . 'config/classes/class.auth.php';
 require_once PATH . 'config/classes/class.user.php';
+require_once PATH . 'config/classes/class.filter.php';
+//require_once PATH . 'config/classes/class.hotel.php';
 require_once PATH . 'config/arquivos/sessao.php';
 require_once PATH . 'config/arquivos/data.php';
-
-$Db     = new Db($bdd);
+$Db = new Db($bdd);
 $Config = new Config();
-$Auth   = new Auth();
+$Auth = new Auth();
+$Function = new Functions();
+//$Function = new Functions();
 if (isset($_SESSION)) {
-    $User = new User($bdd, $_SESSION['username'], $_SESSION['password']);
+    $user = new User($bdd, $_SESSION['username'], $_SESSION['password']);
 }
 
 
