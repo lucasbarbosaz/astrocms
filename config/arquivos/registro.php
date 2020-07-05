@@ -18,9 +18,9 @@
         $consult_email->bindValue(1, $email);
         $consult_email->execute();
 
-        // if (isset($_POST['g-recaptcha-response'])){
-        //     $captcha = $_POST['g-recaptcha-response'];
-        // }
+        if (isset($_POST['g-recaptcha-response'])){
+            $captcha = $_POST['g-recaptcha-response'];
+        }
         
         if (isset($username) && isset($email) && isset($password) && isset($rpassword)) {
             $failure = false;
@@ -46,26 +46,27 @@
             } else if (strlen($password) < 6) {
                 $mensagem3['password'] = "Sua senha deve ter pelo menos 6 caracteres.";
                 $failure = true;
-            } /*else if (!$captcha) {
+            } else if (!$captcha) {
                 $mensagem4['captcha'] = "Você esqueceu de nos informar que você não é um Robô.";
                 $failure = true;
-            }*/
+            }
 
-            $erros = $mensagem1['username'] . $mensagem2['email'] . $mensagem3['password'] . /*$mensagem4['captcha'] . */$mensagem5['username'];
+            $erros = $mensagem1['username'] . $mensagem2['email'] . $mensagem3['password'] . $mensagem4['captcha'] . $mensagem5['username'];
 
             if (!$failure) {
                 $password_hash = md5($password);
 
-                $register = $bdd->prepare("INSERT INTO players (username, password, email, account_created, figure, gender, credits, ip_reg, ip_last) VALUES (?,?,?,?,?,?,?,?,?)");
+                $register = $bdd->prepare("INSERT INTO players (username, password, email, account_created, figure, motto, gender, credits, ip_reg, ip_last) VALUES (?,?,?,?,?,?,?,?,?,?)");
                 $register->bindValue(1, $username);
                 $register->bindValue(2, $password_hash);
                 $register->bindValue(3, $email);
                 $register->bindValue(4, time());
                 $register->bindValue(5, hybbe('figure'));
-                $register->bindValue(6, 'M');
-                $register->bindValue(7, hybbe('moedas'));
-                $register->bindValue(8, $Auth->IP());
+                $register->bindValue(6, hybbe('missao'));
+                $register->bindValue(7, 'M');
+                $register->bindValue(8, hybbe('moedas'));
                 $register->bindValue(9, $Auth->IP());
+                $register->bindValue(10, $Auth->IP());
                 $register->execute();
 
                 session_regenerate_id();
@@ -77,7 +78,7 @@
                 $_SESSION['username'] = $username;
                 $_SESSION['password'] = $password_hash;
 
-                Redirect(URL . "/principal");
+                Redirect(URL . "/me");
 
                 exit();
             }
