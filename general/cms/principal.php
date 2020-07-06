@@ -40,7 +40,7 @@
 									</div>
 									<div class="white" id="player-display-information">
 										<h3 class="bold"><?php echo $user['username']; ?></h3>
-										<h5><?php echo $user['motto']; ?></h5>
+										<h5><?php echo Filter('xss', $user['motto']); ?></h5>
 									</div>
 								</div>
 								<div class="no-select" id="player-monetary-container">
