@@ -178,7 +178,7 @@
 
 													$comentar = $bdd->prepare("INSERT INTO hybbe_comentarios (id_post, comentario, autor, data) VALUES(?,?,?,?)");
 													$comentar->bindValue(1, $idPost);
-													$comentar->bindValue(2, $comentario);
+													$comentar->bindValue(2, Filter('xss', $comentario));
 													$comentar->bindValue(3, $autor);
 													$comentar->bindValue(4, $data);
 													$comentar->execute();
@@ -228,7 +228,7 @@
 												<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $user_comentario['figure']; ?>&headonly=0&size=s&gesture=std&direction=2&head_direction=3&action=std" style="position: relative;width: 32;height: 55px;margin: 0 auto;"/>
 											</div> 
 											<label class="margin-auto-top-bottom flex-column content-width break-word no-select gray" id="news-comment-area">
-												<h5 class="margin-bottom-minm"><?= Functions::Filter('xss', $comentario['comentario']); ?></h5>
+												<h5 class="margin-bottom-minm"><?= Filter('xss', Filter('emoji', $comentario['comentario'])); ?></h5>
 												<h6>Por: <a href="<?php echo $hotel['site']; ?>/perfil/<?php echo $user_comentario['username']; ?>" class="bold no-link"><?php echo $user_comentario['username']; ?></a> em <?php echo strftime('%d/%m/%Y', $comentario['data']); ?> as <?php echo strftime('%H:%M', $comentario['data']); ?></h6>
 											</label>
 											<div id="news-owner-comment-interactions"></div>
