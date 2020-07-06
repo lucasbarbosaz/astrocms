@@ -513,4 +513,69 @@ function FilterLink($a){
     return $ip;
 }
 
+function Filter($type, $string) {
+    if($type == 'emoji'){
+        $value = htmlspecialchars_decode($string);
+        $value = trim($value);
+
+        $search = [
+            ":D", ":d", ":laughing:", ":rindo:",
+            "<3", ":heart:", ":coracao:",
+            ":O", ":o", ":gaping:", ":supreso:", ":boquiaberto:",
+            ";P", ":stuck_out_tongue_winking_eye:", ":piscando_com_a_lingua_pra_fora:",
+            ";(", ":crying:", ":chorando:",
+            ":(", ":sad:", ":triste:",
+            "B)", "b)", ":sunglasses:", ":cool:", ":descolado:",
+            ":|", ":neutral_face:", ":entendiado:",
+            ":)", ":happy_face:", ":sorrindo:"	
+        ];
+
+        $replace = [
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/laughing.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/laughing.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/laughing.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/laughing.png">',
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/heart.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/heart.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/heart.png">',
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/gaping.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/gaping.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/gaping.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/gaping.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/gaping.png">', 
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/blinking.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/blinking.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/blinking.png">',
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/crying.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/crying.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/crying.png">', 
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sad.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sad.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sad.png">',
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sunglasses.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sunglasses.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sunglasses.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sunglasses.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/sunglasses.png">', 
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/bored.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/bored.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/bored.png">', 
+            '<img class="emoji" src="' . CDN . '/assets/img/emoticons/smiling.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/smiling.png">', '<img class="emoji" src="' . CDN . '/assets/img/emoticons/smiling.png">', 
+        ];
+        
+        $value = str_replace($search, $replace, $value);
+    }else if($type == 'XSS' || $type == 'xss'){
+        $value = htmlspecialchars_decode($string);
+        $value = trim($value);
+
+        # 18
+        $search = [
+            "<script", "/script>", 
+            "<div", "/div>",
+            "<a", "/a>",
+            "<button", "/button>",
+            "<?php", "?>",
+            "<?=", "?>",
+            "<svg", "/svg>",
+            "<link", "<?xml"
+        ];
+
+        $replace = [
+            "", "", 
+            "", "", 
+            "", "",
+            "", "",
+            "", "", 
+            "", "", 
+            "", "", 
+            "", "", 
+            "", ""
+        ];
+        
+        $value = str_replace($search, $replace, $value);
+    }
+
+    return $value;
+}
+
+
 ?>
