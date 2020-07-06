@@ -36,7 +36,7 @@
 	//define('HOTELNAME', $Hotel::Settings('hotelname'));
 	define('USERS', Onlines());
 	define('URL', $_SERVER['HTTP_HOST']);
-
+	define('CDN', URL . '/general');
 	// rank minimo
 	define('RANK_MIN', '5');
 
