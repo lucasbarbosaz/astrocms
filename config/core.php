@@ -31,13 +31,12 @@ require_once PATH . 'config/classes/class.config.php';
 require_once PATH . 'config/classes/class.auth.php';
 require_once PATH . 'config/classes/class.user.php';
 require_once PATH . 'config/classes/class.filter.php';
-//require_once PATH . 'config/classes/class.hotel.php';
 require_once PATH . 'config/arquivos/sessao.php';
 require_once PATH . 'config/arquivos/data.php';
 $Db = new Db($bdd);
 $Config = new Config();
 $Auth = new Auth();
-$Function = new Functions();
+$Filters = new Filter();
 //$Function = new Functions();
 if (isset($_SESSION)) {
     $user = new User($bdd, $_SESSION['username'], $_SESSION['password']);
