@@ -222,28 +222,51 @@ function GenerateRandom($type = "sso", $length = 0)
     }
 }
 
-function UpdateSSO($id) {
+function Random($type = "sso", $lenght = 0) {
+    switch ($type) {
+        case "sso":
+            $data = GenerateRandom("random", 8) . "-" . GenerateRandom("random", 4) . "-" . GenerateRandom("random", 4) . "-" . GenerateRandom("random", 4) . "-" . GenerateRandom("random", 12);
+            return $data;
+        break;
+        case "random":
+            $data = null;
+            $possible  = 'abcdefghijklmnopqrstuvwxyz';
+            $possible .= 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $possible .= '1234567890';
+
+            for ($i = 0; $i < $length; $i++) {
+                $data .= substr($possible, rand() % (strlen($possible)), 1);
+            }
+
+            return $data;
+        break;
+        case "random_number":
+            $data = "";
+            $possible = "1234567890";
+            $i  = 0;
+
+            while ($i < $length) {
+                $char = substr($possible, mt_rand(0, strlen($possible) - 1), 1);
+                $data = $char;
+                $i++;
+            }
+
+            return $data;
+        break;
+    }
+}
+
+function UpdateSSO($username) {
     global $bdd;
     
-    $myticket = GenerateRandom();
+    $ticket = Random();
 
-    if($bdd->query("DESCRIBE players")) {
-        $req = $bdd->prepare("SELECT * FROM players WHERE id =:id");
-        $req->execute(Array(":id" => $id));
-        if ($req->rowCount() > 0) {
-            $remote_ip = getenv("HTTP_X_FORWARDED_FOR");
-            $req = $bdd->prepare("UPDATE players SET auth_ticket = '".$myticket."' WHERE id = ?");
-            $req->bindValue(1, $id);
-            $req->execute();
-        } else {
-            $req = $bdd->prepare("UPDATE players SET auth_ticket = '".$myticket."' WHERE id = :id");
-            $req->execute(Array(":id" => $id));
-        }
-    } else {
-            $req = $bdd->prepare("UPDATE players SET auth_ticket = '".$myticket."' WHERE id = :id");
-            $req->execute(Array(":id" => $id));
-    }
-    return $myticket;
+    $updateTicket = $bdd->prepare("UPDATE users SET auth_ticket = ? WHERE username = ? AND online='0'");
+    $updateTicket->bindValue(1, $ticket);
+    $updateTicket->bindValue(2, $username);
+    $updateTicket->execute();
+
+    return $ticket;
 }
 
 function TicketRefresh($username)
@@ -254,10 +277,7 @@ function TicketRefresh($username)
         $base = uniqid($base);
     }
     endfor;
-    $request = $bdd->prepare("UPDATE players SET auth_ticket = ? WHERE username = ? LIMIT 1");
-    $request->bindValue(1, safe($base, 'SQL'));
-    $request->bindValue(2, safe($username, 'SQL'));
-    $request->execute();
+    $request = $bdd->query("UPDATE users SET auth_ticket = '" . safe($base, 'SQL') . "' WHERE username = '" . safe($username, 'SQL') . "' LIMIT 1");
     return $base;
 }
 
