@@ -9,7 +9,7 @@
 	$id = safe($_GET['id'],'SQL');
 	$idpage = safe($_GET['idpage'],'SQL');
 
-	$configura = $bdd->query("SELECT * FROM player_settings WHERE player_id='" . $user['id'] . "' LIMIT 1");
+	$configura = $bdd->query("SELECT * FROM player_settings WHERE user_id='" . $user['id'] . "' LIMIT 1");
 	$row = $configura->fetch(PDO::FETCH_ASSOC);
 
 	$page = "configuracoes";
@@ -47,10 +47,10 @@
 									<?php
 										$email = $_POST['email'];
 										$check_email = preg_match("/^[a-z0-9_\.-]+@([a-z0-9]+([\-]+[a-z0-9]+)*\.)+[a-z]{2,7}$/i", $email);
-										$consulta_email = $bdd->query("SELECT * FROM players WHERE email='" . $email . "' LIMIT 1");
+										$consulta_email = $bdd->query("SELECT * FROM users WHERE mail='" . $email . "' LIMIT 1");
 
 										if(isset($_POST['email'])) {
-											if ($user['email'] == $email) {
+											if ($user['mail'] == $email) {
 												$error = true;
 												$error_type = 'general-error';
 												$error_text = 'Parece que você já usa este e-mail em sua conta! Tente por outro 😀.';
@@ -72,7 +72,7 @@
 												$error_text = 'Espera um pouco aí, você tem que esperar até <b>3</b> minutos para trocar o seu e-mail novamente!';
 											} else {
 												$time_email = time();
-												$bdd->query("UPDATE players SET email='" . $email . "',time_email='" . $time_email . "' WHERE id='" . $user['id'] . "'");
+												$bdd->query("UPDATE users SET email='" . $email . "',time_email='" . $time_email . "' WHERE id='" . $user['id'] . "'");
 												$email_trocado = true;
 												$set_email = $email;
 											}
@@ -91,7 +91,7 @@
 									<?php } ?>
 										<div class="flex">
 											<icon icon="email" class="pointer-none" style="position: relative;top: 11px;left: 11px;margin-right: -16px;"></icon>
-											<input type="text" name="email" placeholder="Seu email..." value="<?php if ($email_trocado == true) { echo $set_email; } else { echo $user['email']; } ?>">
+											<input type="text" name="email" placeholder="Seu email..." value="<?php if ($email_trocado == true) { echo $set_email; } else { echo $user['mail']; } ?>">
 										</div>
 										<li class="list-none flex gray padding-top-max">
 											<button type="submit" class="green-button-2 no-link" style="width: 100%;height: 42px;left: -1px;font-size: 14px;">
@@ -115,8 +115,8 @@
 									</label>
 								</div>
 								<div class="flex-column">
-									<a href="<?php echo $hotel['site']; ?>/configuracoes/email" class="no-link gray padding-min" id="config-options" visited><h5>Configurações do E-mail</h5></a>
-									<a href="<?php echo $hotel['site']; ?>/configuracoes/senha" class="no-link gray padding-min" id="config-options"><h5>Configurações da Senha</h5></a>
+									<a href="<?php echo $hotel['site']; ?>/settings/email" class="no-link gray padding-min" id="config-options" visited><h5>Configurações do E-mail</h5></a>
+									<a href="<?php echo $hotel['site']; ?>/settings/password" class="no-link gray padding-min" id="config-options"><h5>Configurações da Senha</h5></a>
 								</div>
 							 </div>
 						</div>
