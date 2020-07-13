@@ -1,3 +1,31 @@
+console.log("%cAVISO IMPORTANTE", "font: bold 40px sans-serif;color: rgb(237, 28, 28);text-shadow: 2px 0 0 rgb(0, 0, 0), -2px 0 0 rgb(0, 0, 0), 0 2px 0 rgb(0, 0, 0), 0 -2px 0 rgb(0, 0, 0), 1px 1px rgb(0, 0, 0), -1px -1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0), -1px 1px 0 rgb(0, 0, 0)");
+console.log("%cO console, é uma ferramenta de desenvolvimento. Caso alguém peça para que você cole algo aqui dizendo que você pode ganhar qualquer tipo de moeda, não acredite, do contrário você vai estar comprometendo o acesso da sua conta através de algo que você colou aqui.\n\nTudo que você fizer através do console, será de total responsabilidade sua!\n\Harbe Hotel\n", "bold 20px sans-serif");
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+
+		if (callNow) {
+			func.apply(context, args)
+		};
+	};
+}
+
+var URL = document.location.origin,
+API = URL + '/config/api',
+CDN = URL + '/general',
+HOTELNAME = 'Harbe Hotel';
+
 $("#general-button-view-all").click( () => {
 	$("#general-alert-label-description").toggleClass("reading");
 	if($("#general-button-view-all").text() == "Ver mais"){
@@ -110,3 +138,15 @@ $(document).ready(function(){
         $(this).append("<input type='hidden' name='errand_message' value='" + value + "'>");
     });
 });
+
+$(document).on('keyup', 'input[name="username"]', debounce(function() {
+	$.post(API + '/look.php', {
+		username: $(this).val()
+	}, function(data) {
+		if (data['look'].length > 0) {
+			$('.username-look').css('background-image', 'url(' + data['look'] + ')');
+		} else {
+			$('.username-look').css('background-image', 'url(' + CDN + '/assets/img/ghost.png)');
+		}
+	});
+}, 500));
