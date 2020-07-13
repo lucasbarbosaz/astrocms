@@ -36,7 +36,7 @@
 							<div class="drop-shadow" id="container-player">
 								<div id="player-habbo-container">
 									<div id="player-habbo-image">
-										<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $user['figure']; ?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=3&action=std,crr=667"/>
+										<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $user['look']; ?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=3&action=std,crr=667"/>
 									</div>
 									<div class="white" id="player-display-information">
 										<h3 class="bold"><?php echo $user['username']; ?></h3>
@@ -44,9 +44,9 @@
 									</div>
 								</div>
 								<div class="no-select" id="player-monetary-container">
-									<div id="player-rubys"><?php echo number_format($user['activity_points']) ?></div>
-									<div id="player-gems"><?php echo number_format($user['vip_points']) ?></div>
-									<div id="player-emeralds"><?php echo number_format($user['seasonal_points']) ?></div>
+									<div id="player-credits"><?php echo number_format($user['credits']); ?></div>
+									<div id="player-duckets"><?php echo number_format($user['activity_points']); ?></div>
+									<div id="player-diamonds"><?php echo number_format($user['vip_points']); ?></div>
 									<?php if ($user['vip'] == 0) {?>
 										<div id="player-vip-information">
 											<a href="<?php echo $hotel['site']; ?>/loja/vip" class="no-link white">Junte-se ao <b>VIP CLUB</b>!</a>
@@ -59,7 +59,8 @@
 							<div class="drop-shadow" id="general-events-container">
 								<?php 
 									$eventos = $bdd->query("SELECT * FROM hybbe_eventos WHERE type = '1' LIMIT 1");
-									$evento = $eventos->fetch(PDO::FETCH_ASSOC); { 
+									
+									while($evento = $eventos->fetch(PDO::FETCH_ASSOC)){
 								?>
 								<div id="recent-events" style="background-image: url(<?php echo $evento['image']; ?>);">
 									<div id="recent-events-label">
@@ -70,7 +71,8 @@
 								<?php } ?>
 								<?php 
 									$atividades = $bdd->query("SELECT * FROM hybbe_eventos WHERE type = '2' LIMIT 1");
-									$atividade = $atividades->fetch(PDO::FETCH_ASSOC); { 
+									
+									while($atividade = $atividades->fetch(PDO::FETCH_ASSOC)){
 								?>
 								<div id="special-events" style="background-image: url(<?php echo $atividade['image']; ?>);">
 									<div id="special-events-label">
@@ -85,20 +87,20 @@
 									<div id="featured-fame-header">Usuários famosos</div>
 									<div id="featured-fame">
 										<div id="featured-fame-users">
-											<div id="featured-fame-rubys">
+											<div id="featured-fame-credits">
 												<div id="featured-fame-habbo">
                                                     <?php 
-                                                    $r = $bdd->query("SELECT username,figure,vip_points,id FROM players WHERE rank < 4 ORDER BY vip_points DESC LIMIT 1");
+                                                    $r = $bdd->query("SELECT username,figure,credits,id FROM players WHERE rank < 4 ORDER BY vip_points DESC LIMIT 1");
                                                     $s = $r->fetch(PDO::FETCH_ASSOC);
                                                     ?>
 													<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $s['figure'];?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std"/>
 												</div>
 												<div id="featured-fame-label">
 													<h4 class="bold" username-fame><?php echo $s['username'];?></h4>
-													<h6 rubys><?php echo number_format($s['vip_points']) ?> rubys</h6>
+													<h6 credits><?php echo number_format($s['credits']) ?> créditos</h6>
 												</div>
 											</div>
-											<div id="featured-fame-gems">
+											<div id="featured-fame-duckets">
 												<div id="featured-fame-habbo">
                                                     <?php
                                                     $r = $bdd->query("SELECT username,figure,activity_points,id FROM players WHERE rank < 4 ORDER BY activity_points DESC LIMIT 1");
@@ -108,20 +110,20 @@
 												</div>
 												<div id="featured-fame-label">
 													<h4 class="bold" username-fame><?php echo $s['username'];?></h4>
-													<h6 gems><?php echo number_format($s['activity_points']) ?> gemas</h6>
+													<h6 duckets><?php echo number_format($s['activity_points']) ?> duckets</h6>
 												</div>
 											</div>
-											<div id="featured-fame-emeralds">
+											<div id="featured-fame-diamonds">
 												<div id="featured-fame-habbo">
                                                     <?php
-                                                    $r = $bdd->query("SELECT username,figure,seasonal_points,id FROM players WHERE rank < 4 ORDER BY seasonal_points DESC LIMIT 1");
+                                                    $r = $bdd->query("SELECT username,figure,vip_points,id FROM players WHERE rank < 4 ORDER BY gotw_points DESC LIMIT 1");
                                                     $s = $r->fetch(PDO::FETCH_ASSOC);
                                                     ?>
 													<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $s['figure'];?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std"/>
 												</div>
 												<div id="featured-fame-label">
 													<h4 class="bold" username-fame><?php echo $s['username'];?></h4>
-													<h6 emeralds><?php echo number_format($s['seasonal_points']) ?> esmeraldas</h6>
+													<h6 diamonds><?php echo number_format($s['vip_points']) ?> diamantes</h6>
 												</div>
 											</div>
 										</div>
@@ -142,9 +144,15 @@
 												<?php } else { ?>
 												<div id="featured-room-thumbnail" style="background-image: url('<?php echo $room['thumbnail']; ?>');"></div>
 												<?php } ?>
+												<?php 
+													$pushUser = $bdd->prepare("SELECT username FROM users WHERE id = ?");
+													$pushUser->bindValue(1, $room['owner']);
+													$pushUser->execute();
+													$fetchUser = $pushUser->fetch(PDO::FETCH_ASSOC);
+												?>
 												<div id="featured-room-label">
-													<h4 class="bold text-nowrap"><?php echo $room['name']; ?></h4>
-													<h6 class="text-nowrap"><?php echo $room['owner']; ?></h6>
+													<h4 class="bold text-nowrap"><?= $room['caption']; ?></h4>
+													<h6 class="text-nowrap"><?= $fetchUser['username']; ?></h6>
 												</div>
 											</div>
 											<div id="featured-room-interactions">
@@ -168,14 +176,20 @@
 										while ($rownews = $news_widget->fetch(PDO::FETCH_ASSOC)) {
 									?>
 									<div class="mySlides flex-column" id="news-widget-slide">
-										<a href="<?php echo $hotel['site']; ?>/noticia/<?php echo $rownews['id']; ?>" class="no-link">
+										<a href="<?php echo $hotel['site']; ?>/article/<?php echo $rownews['id']; ?>" class="no-link">
 											<div id="news-widget-slide-image" style="background-image: url(<?php echo $rownews['image_url']; ?>)"></div>
 										</a>
+										<?php 
+											$author = $bdd->prepare("SELECT * FROM players WHERE id = ?");
+											$author->bindValue(1, $rownews['autor']);
+											$author->execute();
+											$fetchAuthor = $author->fetch(PDO::FETCH_ASSOC);
+										?>
 										<label class="flex-column gray margin-top-min" id="news-widget-slide-label">
 											<h6 class="margin-bottom-minm">Categoria: <a class="no-link bold"><?php echo $rownews['category']; ?></a></h6>
 											<h4 class="bold text-nowrap" id="news-widget-label-title"><?php echo $rownews['title']; ?></h4>
 											<h6 class="text-nowrap" id="news-widget-label-description"><?php echo $rownews['stext']; ?></h6>
-											<h6 class="padding-minm margin-auto-top" id="news-widget-slide-info">Por: <b><?php echo $rownews['autor']; ?></b> em <b><?php echo strftime('%d de %B de %Y',$rownews['time']); ?></b> às <b><?php echo strftime('%H:%M',$rownews['time']); ?></b></h6>
+											<h6 class="padding-minm margin-auto-top" id="news-widget-slide-info">Por: <b><?php echo $fetchAuthor['username']; ?></b> em <b><?php echo strftime('%d de %B de %Y',$rownews['time']); ?></b> às <b><?php echo strftime('%H:%M',$rownews['time']); ?></b></h6>
 										</label>
 									</div>
 								<?php } ?>
