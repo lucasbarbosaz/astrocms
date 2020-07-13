@@ -71,8 +71,10 @@
 													$erro_tempo_senha = true;
 												} else {
 													$tempo_senha_trocada = time();
-													$atualizar = $bdd->query("UPDATE players SET password='" . md5($nova_senha) . "',time_password='" . $tempo_senha_trocada . "' WHERE id='" . $user['id'] . "'");
+													$atualizar = $bdd->query("UPDATE users SET password='" . md5($nova_senha) . "',time_password='" . $tempo_senha_trocada . "' WHERE id='" . $user['id'] . "'");
 													$change_password = true;
+													session_destroy();
+													Redirect(URL . '/index');
 												}
 											}
 										?>
@@ -148,8 +150,8 @@
 									</label>
 								</div>
 								<div class="flex-column">
-									<a href="<?php echo $hotel['site']; ?>/configuracoes/email" class="no-link gray padding-min" id="config-options"><h5>Configurações do E-mail</h5></a>
-									<a href="<?php echo $hotel['site']; ?>/configuracoes/senha" class="no-link gray padding-min" id="config-options" visited><h5>Configurações da Senha</h5></a>
+									<a href="<?php echo $hotel['site']; ?>/settings/email" class="no-link gray padding-min" id="config-options"><h5>Configurações do E-mail</h5></a>
+									<a href="<?php echo $hotel['site']; ?>/settings/password" class="no-link gray padding-min" id="config-options" visited><h5>Configurações da Senha</h5></a>
 								</div>
 							 </div>
 						</div>
