@@ -9,7 +9,7 @@
 	$id = safe($_GET['id'],'SQL');
 	$idpage = safe($_GET['idpage'],'SQL');
 
-	$configura = $bdd->query("SELECT * FROM player_settings WHERE user_id='" . $user['id'] . "' LIMIT 1");
+	$configura = $bdd->query("SELECT * FROM player_settings WHERE player_id='" . $user['id'] . "' LIMIT 1");
 	$row = $configura->fetch(PDO::FETCH_ASSOC);
 
 	$page = "configuracoes";
