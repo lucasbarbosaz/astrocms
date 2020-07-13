@@ -5,6 +5,13 @@
 	$id = safe($_GET['id'],'SQL');
 	$idpage = safe($_GET['idpage'],'SQL');
 	$pageid = "client/jogando";
+
+	$ticket = Random();
+	$updatTicket = $bdd->prepare("UPDATE users SET auth_ticket = ? WHERE username = ? AND online='0'");
+	$updatTicket->bindValue(1, $ticket);
+	$updatTicket->bindValue(2, $username);
+	$updatTicket->execute();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +56,7 @@
 								<a href="https://get.adobe.com/flashplayer/" target="_blank" class="green-button-2 no-link margin-right-min" style="width: 165px;height: 45px;font-size: 13px;">
 									<label class="margin-auto white">Ativar o flash player</label>
 								</a>
-								<a href="<?php echo $hotel['site']; ?>/principal" class="red-button no-link" style="width: 150px;height: 45px;font-size: 13px;">
+								<a href="<?php echo $hotel['site']; ?>/me" class="red-button no-link" style="width: 150px;height: 45px;font-size: 13px;">
 									<label class="margin-auto white">Voltar ao inicio</label>
 								</a>
 							</div>
@@ -95,29 +102,36 @@
 			var flashvars = {
 				"client.allow.cross.domain" : "1",
 				"client.notify.cross.domain" : "0",
-				"connection.info.host" : "localhost",
+
+				"connection.info.host" : "52.187.214.227",
 				"connection.info.port" : "30000",
+
 				"site.url" : "<?php echo $hotel['site']; ?>",
 				"url.prefix" : "<?php echo $hotel['site']; ?>",
+
 				"client.reload.url" : "<?php echo $hotel['site']; ?>/client",
 				"client.fatal.error.url" : "<?php echo $hotel['site']; ?>/erro-15",
 				"client.connection.failed.url" : "<?php echo $hotel['site']; ?>/flash_client_error", 
-				"external.variables.txt" : "<?php echo $hotel['site']; ?>/swfs/gamedata/external_variables.txt?<?php echo time(); ?>",
-				"external.texts.txt" : "<?php echo $hotel['site']; ?>/swfs/gamedata/external_flash_texts.txt?<?php echo time(); ?>",
-				"productdata.load.url" : "<?php echo $hotel['site']; ?>/swfs/gamedata/productdata.txt?<?php echo time(); ?>",
-				"furnidata.load.url" : "<?php echo $hotel['site']; ?>/swfs/gamedata/furnidata.xml?<?php echo time(); ?>",
+
+                "external.variables.txt" : "http://images.harbe.com.br/gamedata/external_variables.txt", 
+				"external.texts.txt" : "http://images.harbe.com.br/gamedata/external_flash_texts.txt", 
+				"external.override.texts.txt" : "http://images.harbe.com.br/gamedata/override/external_flash_override_texts.txt",
+				"productdata.load.url" : "http://images.harbe.com.br/gamedata/productdata.txt", 
+				"furnidata.load.url" : "http://images.harbe.com.br/gamedata/furnidata.xml", 
+
 				"use.sso.ticket" : "1",
-				"sso.ticket" : "<?php echo UpdateSSO($User->id); ?>",
-				"processlog.enabled" : "0",
+				"sso.ticket" : "<?php echo UpdateSSO($user['username']); ?>",
+
+				"processlog.enabled" : "1",
 				"client.starting" : "Aguarde, o hybbe está carregando...",
 				"client.starting.revolving": "Quando você menos esperar...terminaremos de carregar.../Carregando mensagem divertida! Por favor espere./Você quer batatas fritas para acompanhar?/Siga o pato amarelo./O tempo é apenas uma ilusão./Já chegamos?!/Eu gosto da sua camiseta./Olhe para um lado. Olhe para o outro. Pisque duas vezes. Pronto!/Não é você, sou eu./Shhh! Estou tentando pensar aqui./Carregando o universo de pixels.",
-				"flash.client.url" : "<?php echo $hotel['site']; ?>/swfs/gordon/PRODUCTION-201611291003-338511768/",
+				"flash.client.url" : "<?php echo $hotel['site_swf']; ?>/gordon/PRODUCTION/",
 				"has.identity" : "0",
 				"flash.client.origin" : "popup"
 			};
 
 			var params = {
-				"base" : "<?php echo $hotel['site']; ?>/swfs/gordon/PRODUCTION-201611291003-338511768/",
+				"base" : "<?php echo $hotel['site_swf']; ?>/gordon/PRODUCTION/",
 				"allowScriptAccess" : "always",
 				"menu": "false",
 				"wmode": "opaque"             
@@ -127,8 +141,8 @@
 				params["wmode"] = "opaque";
 			}
 			
-			FlashExternalInterface.signoutUrl = "<?php echo $hotel['site']; ?>/sair";
-			swfobject.embedSWF('<?php echo $hotel['site']; ?>/swfs/gordon/PRODUCTION-201611291003-338511768/habbo.swf?<?php echo time(); ?>', "flash-container", "100%", "100%", "10.0.0", "expressInstall.swf", flashvars, params);
+			FlashExternalInterface.signoutUrl = "<?php echo $hotel['site']; ?>/logout";
+			swfobject.embedSWF('<?php echo $hotel['site_swf']; ?>/gordon/PRODUCTION/habbo.swf', "flash-container", "100%", "100%", "10.0.0", "expressInstall.swf", flashvars, params);
 
 			window.onbeforeunload = unloading;
 			function unloading() {
