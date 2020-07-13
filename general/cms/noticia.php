@@ -3,35 +3,37 @@
 	require_once ("../../geral.php");
 
 	if($_GET['article_id'] != "") {
-		$news_id = $_GET['id'];
+		$news_id = $_GET['article_id'];
 	} else {
 		$sql = $bdd->query("SELECT * FROM habbo_news WHERE id != '-344' ORDER BY id DESC LIMIT 1");
 		$swazzy = $sql->fetch(PDO::FETCH_ASSOC);
-		$locations = $swazzy['id'];
+		$locations = is_numeric($swazzy['id']);
 		header("Location: $path/article/$locations");
 	}
 
-    $bdd->query("UPDATE habbo_news SET views = views + 1 WHERE id = '$news_id'");
 
-    $useradmin_s = $bdd->query("SELECT * FROM players WHERE username = '" . $_SESSION['username'] . "'");
-    $useradmin = $useradmin_s->fetch(PDO::FETCH_ASSOC);
+	$useradmin_s = $bdd->prepare("SELECT * FROM players WHERE username = ?");
+	$useradmin_s->bindValue(1, $_SESSION['username']);
+	$useradmin_s->execute();
+	$useradmin = $useradmin_s->fetch(PDO::FETCH_ASSOC);
 
-    $figure_s = $bdd->query("SELECT * FROM players WHERE figure = '". $_POST['figure'] . "'");
-    $figure = $figure_s->fetch(PDO::FETCH_ASSOC);
+	$figure_s = $bdd->prepare("SELECT * FROM players WHERE figure = ?");
+	$figure->bindValue(1, $_POST['figure']);
+	$figure->execute();
+	$figure = $figure_s->fetch(PDO::FETCH_ASSOC);
 
 	$sql2 = $bdd->query("SELECT * FROM habbo_news WHERE id != '-344' ORDER BY id DESC");
 	$sql232 = $bdd->query("SELECT * FROM habbo_news WHERE id != '-344' ORDER BY id DESC");
 
-	$noticias = $bdd->query("SELECT * FROM habbo_news WHERE id='".$_GET['article_id']."'");
+	$noticias = $bdd->prepare("SELECT * FROM habbo_news WHERE id = ?");
+	$noticias->bindValue(1, $_GET['article_id']);
+	$noticias->execute();
 	$noticia = $noticias->fetch(PDO::FETCH_ASSOC);
 
-	$figure_autor = $bdd->query("SELECT * FROM players WHERE username='" . $noticia['autor'] . "'");
+	$figure_autor = $bdd->prepare("SELECT * FROM players WHERE id = ?");
+	$figure_autor->bindValue(1, $noticia['autor']);
+	$figure_autor->execute();
 	$autor = $figure_autor->fetch(PDO::FETCH_ASSOC);
-
-
-	$palavrasbloqueadas=file_get_contents('/PalavrasBloqueadas.txt');
-
-
 
 	$page = "noticias";
 	$page_name = "" . $noticia['title'] . "";
@@ -47,8 +49,8 @@
 		<container>
 			<div id="container">
 				<div class="webcenter flex-column">
-					<div id="content">
-						<div class="column-separator-left">
+					<div id="content" class="flex">
+						<div class="column-separator-left margin-auto-left">
 							<div id="news-container">
 								<div id="news-content">
 									<div class="flex" id="news-header">
@@ -62,8 +64,14 @@
 										<?php if ($noticia['stext'] != '' || $noticia['stext'] != NULL) { ?>
 											<h5><?php echo $noticia['stext']; ?></h5>
 										<?php } ?>
+										<?php 
+											$author = $bdd->prepare("SELECT * FROM players WHERE id = ?");
+											$author->bindValue(1, $noticia['autor']);
+											$author->execute();
+											$fetchAuthor = $author->fetch(PDO::FETCH_ASSOC);
+										?>
 											<div class="margin-top-minm">
-												<h6>Noticia postada por: <a href="<?php echo $hotel['site']; ?>/perfil/<?php echo $noticia['autor']; ?>" class="bold no-link"><?php echo $noticia['autor']; ?></a> em <?php echo strftime('%d de %B de %Y', $noticia['time']); ?> as <?php echo strftime('%H:%M', $noticia['time']); ?> na categoria <b><?php echo $noticia['category']; ?></b>.</h6>
+												<h6>Noticia postada por: <a href="<?php echo $hotel['site']; ?>/perfil/<?php echo $noticia['autor']; ?>" class="bold no-link"><?php echo $fetchAuthor['username']; ?></a> em <?php echo strftime('%d de %B de %Y', $noticia['time']); ?> às <?php echo strftime('%H:%M', $noticia['time']); ?> na categoria <b><?php echo $noticia['category']; ?></b>.</h6>
 											</div>
 										</label>
 									</div>
@@ -93,7 +101,10 @@
 										// Se o usuário estiver logado, oque estiver no if será verdadeiro. Se não, o botão de like não aparecerá
 										if($_SESSION['username']) {
 											$idnoticia = $_GET['article_id'];
-											$consulta = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
+											$consulta = $bdd->prepare("SELECT * FROM hybbe_curtidas WHERE id_post = ? AND usercurtiu = ?");
+											$consulta->bindValue(1, $idnoticia);
+											$consulta->bindValue(2, $user['id']);
+											$consulta->execute();
 
 											$consulta2 = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
 											$row = $consulta2->fetch(PDO::FETCH_ASSOC);
@@ -110,10 +121,17 @@
 											if ($consulta->rowCount() <= 0) {
 												if (isset($_POST['curtir'])) {
 													$idnoticia = $_GET['article_id'];
-													$consultar_noticia = $bdd->query("SELECT * FROM hybbe_curtidas WHERE id_post='" . $idnoticia . "' AND usercurtiu='" . $user['id'] . "'");
+													$consultar_noticia = $bdd->prepare("SELECT * FROM hybbe_curtidas WHERE id_post = ? AND usercurtiu = ?");
+													$consultar_noticia->bindValue(1, $idnoticia);
+													$consultar_noticia->bindValue(2, $user['id']);
+													$consultar_noticia->execute();
 													$result = $consultar_noticia->fetch(PDO::FETCH_ASSOC);
 
-													$bdd->query("INSERT INTO hybbe_curtidas (id_post, usercurtiu, status) VALUES ('" . $idnoticia . "', '" . $user['id'] . "', '1')");
+													$insertLike = $bdd->prepare("INSERT INTO hybbe_curtidas (id_post, usercurtiu, status) VALUES (?,?,?)");
+													$insertLike->bindValue(1, $idnoticia);
+													$insertLike->bindValue(2, $user['id']);
+													$insertLike->bindValue(3, '1');
+													$insertLike->execute();
 													$like_type = 'curtido';
 													$likes_count+1;
 												}
@@ -187,7 +205,7 @@
 									?>
 									<div id="news-new-comment">
 										<div id="news-new-comment-habbo">
-											<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $useradmin['figure'];?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std"/>
+											<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $useradmin['look'];?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std"/>
 										</div>
 										<form action="<?php echo $hotel['site']; ?>/article/<?php echo $idPost; ?>" method="POST" class="flex-column">
 											<div class="flex-wrap margin-auto-top-bottom">
@@ -219,13 +237,12 @@
 								<?php
 									$idPost = $_GET['article_id'];
 									while ($comentario = $consulta->fetch(PDO::FETCH_ASSOC)) {
-										$comentario_info = $bdd->query("SELECT * FROM players WHERE id='" . $comentario['autor'] . "'");
-										while ($user_comentario = $comentario_info->fetch(PDO::FETCH_ASSOC)) {
+yers										while ($user_comentario = $comentario_info->fetch(PDO::FETCH_ASSOC)) {
 								?>
 									<div class="flex-column">
 										<div class="flex" id="news-user-comment">
 											<div id="news-user-comment-habbo">
-												<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $user_comentario['figure']; ?>&headonly=0&size=s&gesture=std&direction=2&head_direction=3&action=std" style="position: relative;width: 32;height: 55px;margin: 0 auto;"/>
+												<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $user_comentario['look']; ?>&headonly=0&size=s&gesture=std&direction=2&head_direction=3&action=std" style="position: relative;width: 32;height: 55px;margin: 0 auto;"/>
 											</div> 
 											<label class="margin-auto-top-bottom flex-column content-width break-word no-select gray" id="news-comment-area">
 												<h5 class="margin-bottom-minm"><?= Filter('xss', Filter('emoji', $comentario['comentario'])); ?></h5>
@@ -245,7 +262,7 @@
 								<?php include('../../config/includes/footer.php'); ?>
 							</div>
 						</div>
-						<div class="column-separator-right margin-bottom-md">
+						<div class="column-separator-right margin-bottom-md margin-auto-right">
 							<div id="other-news-container">
 								<div id="other-news-header" style="background-image: url('')">
 									<div id="other-news-header-icon"></div>
@@ -298,46 +315,32 @@
 							break;
 						}
 
-											$selecionar_noticias = $bdd->prepare("SELECT * FROM habbo_news WHERE time >= ? AND time <= ? ORDER BY time DESC LIMIT 5");
-											$selecionar_noticias->bindValue(1, $section_time_min);
-											$selecionar_noticias->bindValue(2, $section_time_max);
-											$selecionar_noticias->execute();
+						$selecionar_noticias = $bdd->prepare("SELECT * FROM habbo_news WHERE time >= ? AND time <= ? ORDER BY time DESC LIMIT 5");
+						$selecionar_noticias->bindValue(1, $section_time_min);
+						$selecionar_noticias->bindValue(2, $section_time_max);
+						$selecionar_noticias->execute();
 
-											if ($selecionar_noticias->rowCount() > 0) {
-												echo '
-												<div class="flex" id="other-news-content-separator">
-													<h5 class="margin-auto-top-bottom white">' . $section_name . '</h5>
+						if ($selecionar_noticias->rowCount() > 0) {
+								echo '<div class="flex" id="other-news-content-separator"><h5 class="margin-auto-top-bottom white">' . $section_name . '</h5>
+									</div>
+								';
+
+							while ($result_others_articles = $selecionar_noticias->fetch(PDO::FETCH_ASSOC)) {
+				?>
+										<div id="other-news-content" style="background-image: url(<?= $result_others_articles['image_url']; ?>)">
+											<a href="/article/<?= $result_others_articles['id']; ?>" class="no-link" id="other-news-box">
+												<div id="other-news-content-icon" <?= ($result_others_articles['id'] == $_GET['article_id']) ? 'reading-news' : ''; ?>></div>
+												<div id="other-news-content-label" class="white text-nowrap">
+													<h5 class="bold text-nowrap"><?= $result_others_articles['title']; ?></h5>
+													<h6 class="text-nowrap"><?= $result_others_articles['stext']; ?></h6>
 												</div>
-												';
-
-												while ($result_others_articles = $selecionar_noticias->fetch(PDO::FETCH_ASSOC)) {
-													if($result_others_articles['id'] == $_GET['article_id']) {
-														echo '
-														<div id="other-news-content" style="background-image: url(' . $result_others_articles['image_url'] . ')">
-															<a href="' . $result_others_articles['id'] . '" class="no-link" id="other-news-box">
-																<div id="other-news-content-icon" reading-news></div>
-																<div id="other-news-content-label" class="white text-nowrap">
-																	<h5 class="bold text-nowrap">' . $result_others_articles['title'] . '</h5>
-																	<h6 class="text-nowrap">' . $result_others_articles['stext'] . '</h6>
-																</div>
-															</a>
-														</div>';
-													} else {
-														echo '
-														<div id="other-news-content" style="background-image: url(' . $result_others_articles['image_url'] . ')">
-															<a href="' . $result_others_articles['id'] . '" class="no-link" id="other-news-box">
-																<div id="other-news-content-icon"></div>
-																<div id="other-news-content-label" class="white text-nowrap">
-																	<h5 class="bold text-nowrap">' . $result_others_articles['title'] . '</h5>
-																	<h6 class="text-nowrap">' . $result_others_articles['stext'] . '</h6>
-																</div>
-															</a>
-														</div>';
-													}
-												}
-											}
-										}
-								?>
+											</a>
+										</div>
+				<?php
+							}
+						}
+					}
+				?>
 							</div>
 						</div>
 					</div>
@@ -386,9 +389,10 @@
 						<div class="flex-column margin-bottom-min" id="news-modal-header">
 							<div class="margin-right-min flex-wrap margin-bottom-md" id="news-modal-header-icon">
 								<icon icon="ballon-big1"></icon>
+
 								<label class="margin-left-min gray">
 									<h4 class="bold">Formulário de noticias</h4>
-									<h5>Envie seu formulário para <b><?php echo $noticia['autor']; ?></b></h5>
+									<h5>Envie seu formulário para <b><?php echo $fetchAuthor['username']; ?></b></h5>
 								</label>
 								<button class="reset-button flex margin-auto-left margin-auto-top-bottom close-modal">
 									<icon icon="close"></icon>
@@ -398,11 +402,17 @@
 								<h4 class="bold gray margin-bottom-minm">Dados da Noticia</h4>
 								<div class="flex-wrap" id="news-modal-header-news-info">
 									<div id="news-modal-header-news-info-habbo-author">
-										<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $autor['figure']; ?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std">
+										<img src="<?php echo $hotel['avatarimage']; ?>figure=<?php echo $autor['look']; ?>&headonly=0&size=n&gesture=std&direction=2&head_direction=3&action=std">
 									</div>
+										<?php 
+											$author = $bdd->prepare("SELECT * FROM players WHERE id = ?");
+											$author->bindValue(1, $noticia['autor']);
+											$author->execute();
+											$fetchAuthor = $author->fetch(PDO::FETCH_ASSOC);
+										?>
 									<label class="gray margin-auto-top-bottom">
 										<h5 class="bold margin-bottom-minm"><?php echo $noticia['title']; ?></h5>
-										<h6>Por <b><?php echo $noticia['autor']; ?></b> em <?php echo strftime('%d de %B de %Y', $noticia['time']); ?> as <?php echo strftime('%H:%M', $noticia['time']); ?></h6>
+										<h6>Por <b><?php echo $fetchAuthor['username']; ?></b> em <?php echo strftime('%d de %B de %Y', $noticia['time']); ?> as <?php echo strftime('%H:%M', $noticia['time']); ?></h6>
 									</label>
 								</div>
 							</div>
