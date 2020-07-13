@@ -10,10 +10,10 @@
 	            $username = isset($_POST['username']) ? safe($_POST['username'],'SQL') : '';
 	            $Auth::Login($username, $password, 'false', $table['BanSQL']);
 	            } catch(Exception $e){
-	        $erros = $e->getMessage() AND $erro = true;
-	    }
+	        		$erros = $e->getMessage() AND $erro = true;
+	    		}
 	        }else{
-	            $erros = 'Preencha os campos para logar' AND $erro = true;
+				$erros = 'Preencha os campos para logar' AND $erro = true;
 	        }  
 	}
 
@@ -47,7 +47,7 @@
 					<div id="content">
 						<div class="border-box no-select" id="index-greeting">
 							<div id="index-greeting-icon"></div>
-							<div id="index-greeting-label">Seja bem-vindo ou vinda! Atualmente temos <b>0</b> usuários online, que tal se juntar a nós e ver tudo oque temos para lhe oferecer?</div>
+							<div id="index-greeting-label">Seja bem-vindo ou vinda! Atualmente temos <b><?= Onlines();?></b> usuários online, que tal se juntar a nós e ver tudo oque temos para lhe oferecer?</div>
 						</div>
 						<div class="column-separator-left" style="width: 350px;">
 						<?php if ($erro == true) { ?>
@@ -73,7 +73,7 @@
 						<?php } ?>
 							<form class="flex-column" id="area-login" role="form" method="POST" class="login">
 								<div class="margin-top-min flex" id="login-username">
-									<icon icon="frank-head" style="position: relative;top: 5px;left: 8px;margin-right: -34px;"></icon>
+								<div class="username-look"></div>
 									<input name="username" type="text" class="padding-md" id="username" placeholder="Usuário">
 								</div>
 								<div class="flex margin-top-min" id="login-password">
@@ -110,35 +110,35 @@
 								</div>
 								<div>
                                     
-                                    <?php $r = mysql_query("SELECT username,figure,vip_points,id FROM players WHERE rank < 4 ORDER BY vip_points DESC LIMIT 1");
-                                    while($s = mysql_fetch_assoc($r)){?>
+                                    <?php $r = $bdd->query("SELECT username,look,vip_points,id FROM players WHERE rank < 4 ORDER BY vip_points DESC LIMIT 1");
+                                    while($s = $r->fetch(PDO::FETCH_ASSOC)){?>
 									<div id="index-hall-of-fame-box">
 										<div id="index-hall-of-fame-box-avatar">
-											<img alt="Username" src="https://hybbe.top/habbo-imaging/avatarimage.php?figure=<?php echo $s['figure'];?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=2&action=std" style="position: relative;left: -3px;top: -16px;z-index: 1;"/>
+											<img alt="Username" src="<?php echo $hotel['avatarimage'];?>figure=<?php echo $s['figure'];?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=2&action=std" style="position: relative;left: -3px;top: -16px;z-index: 1;"/>
 										</div>
 										<div id="index-hall-of-fame-box-label">
 											<strong id="index-hall-of-fame-box-label-username"><?php echo $s['username'];?></strong>
-											<div id="index-hall-of-fame-box-label-amount">Possui <?php echo $s['vip_points'];?> rubys</div>
+											<div id="index-hall-of-fame-box-label-amount">Possui <?php echo number_format($s['vip_points']);?> diamantes</div>
 										</div>
 									</div>
                                     <?php } ?>
 									<div id="index-hall-of-fame-box">
-                                        <?php $r = mysql_query("SELECT username,figure,activity_points,id FROM players WHERE rank < 4 ORDER BY activity_points DESC LIMIT 1");
-                                        while($s = mysql_fetch_assoc($r)){
+                                        <?php $r = $bdd->query("SELECT username,look,activity_points,id FROM players WHERE rank < 4 ORDER BY activity_points DESC LIMIT 1");
+                                        while($s = $r->fetch(PDO::FETCH_ASSOC)){
                                         ?>
 										<div id="index-hall-of-fame-box-avatar">
-											<img alt="Username" src="https://hybbe.top/habbo-imaging/avatarimage.php?figure=<?php echo $s['figure'];?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=2&action=std" style="position: relative;left: -3px;top: -16px;z-index: 1;"/>
+											<img alt="Username" src="<?php echo $hotel['avatarimage'];?>figure=<?php echo $s['figure'];?>&headonly=0&size=n&gesture=sml&direction=2&head_direction=2&action=std" style="position: relative;left: -3px;top: -16px;z-index: 1;"/>
 										</div>
 										<div id="index-hall-of-fame-box-label">
 											<strong id="index-hall-of-fame-box-label-username"><?php echo $s['username'];?></strong>
-											<div id="index-hall-of-fame-box-label-amount">Possui <?php echo $s['activity_points'];?> gemas</div>
+											<div id="index-hall-of-fame-box-label-amount">Possui <?php echo number_format($s['activity_points']);?> duckets</div>
 										</div>
 									</div>
                                     <?php } ?>
 								</div>
 							</div>
 						</div>
-						<div class="border-box" id="footer">© 2019 Hybbe Hotel. Todos os direitos reservados a seus respectivos donos. <div class="float-right"><b>Hylib</b> 0.0.2</div></div>
+						<div class="border-box" id="footer"><?php echo $hotel['cms_name']; ?></b> <?php echo $hotel['cms_version']; ?> | <?php echo $hotel['hotelname']; ?> 2020 © Todos os direitos reservados.<div class="float-right">Com amor por: <b><?php echo $hotel['cms_developers']; ?></div></div>
 					</div>
 				</div>
 			</div>
