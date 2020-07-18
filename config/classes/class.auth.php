@@ -38,7 +38,7 @@
 			}
 				
 			if($verif_user->rowCount() == 1){
-				$laxus = $bdd->prepare("UPDATE players SET last_onlinw = ? WHERE username = ?");
+				$laxus = $bdd->prepare("UPDATE players SET last_online = ? WHERE username = ?");
 				$laxus->bindValue(1, time());
 				$laxus->bindValue(2, safe($username, 'SQL'));
 				$laxus->execute();
