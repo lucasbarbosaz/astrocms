@@ -6,7 +6,7 @@
 	if (extract($_POST)) {
 		$username = (isset($_POST['username'])) ? $_POST['username'] : '';
 
-		$consult_look = $bdd->prepare("SELECT look FROM users WHERE username = ?");
+		$consult_look = $bdd->prepare("SELECT figure FROM players WHERE username = ?");
 		$consult_look->bindValue(1, $username);
 		$consult_look->execute();
 
