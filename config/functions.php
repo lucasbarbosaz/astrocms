@@ -36,7 +36,7 @@ function Redirect($url)
 function hybbe($str)
 {
     global $bdd;
-    $tmp2 = $bdd->query("SELECT " . safe($str, 'SQL') . " FROM hybbe_geral LIMIT 1");
+    $tmp2 = $bdd->query("SELECT * FROM hybbe_geral LIMIT 1");
     $tmp = $tmp2->fetch(PDO::FETCH_ASSOC);
 
     return $tmp[$str];
@@ -261,7 +261,7 @@ function UpdateSSO($username) {
     
     $ticket = Random();
 
-    $updateTicket = $bdd->prepare("UPDATE users SET auth_ticket = ? WHERE username = ? AND online='0'");
+    $updateTicket = $bdd->prepare("UPDATE players SET auth_ticket = ? WHERE username = ? AND online='0'");
     $updateTicket->bindValue(1, $ticket);
     $updateTicket->bindValue(2, $username);
     $updateTicket->execute();
@@ -277,7 +277,7 @@ function TicketRefresh($username)
         $base = uniqid($base);
     }
     endfor;
-    $request = $bdd->query("UPDATE users SET auth_ticket = '" . safe($base, 'SQL') . "' WHERE username = '" . safe($username, 'SQL') . "' LIMIT 1");
+    $request = $bdd->query("UPDATE players SET auth_ticket = '" . safe($base, 'SQL') . "' WHERE username = '" . safe($username, 'SQL') . "' LIMIT 1");
     return $base;
 }
 
