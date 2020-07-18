@@ -37,6 +37,8 @@
 	define('USERS', Onlines());
 	define('URL', $_SERVER['HTTP_HOST']);
 	define('CDN', URL . '/general');
+	define('API', URL . '/config/api');
+	define('AVATARIMAGE', $hotel['avatarimage']);
 	// rank minimo
 	define('RANK_MIN', '5');
 
