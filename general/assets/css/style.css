@@ -785,6 +785,15 @@ button#general-button-view-all.reading{
     float: right;
 }
 
+#header-other-area-icon[cam]::before {
+    content: "";
+    position: relative;
+    background: url(../img/sprite.png) no-repeat -395px -95px;
+    width: 42px;
+    height: 50px;
+    margin: auto;
+}
+
 #container-player {
     position: relative;
     border-radius: 5px;
