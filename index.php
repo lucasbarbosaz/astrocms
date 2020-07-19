@@ -110,7 +110,7 @@
 								</div>
 								<div>
                                     
-                                    <?php $r = $bdd->query("SELECT username,look,vip_points,id FROM players WHERE rank < 4 ORDER BY vip_points DESC LIMIT 1");
+                                    <?php $r = $bdd->query("SELECT username,figure,vip_points,id FROM players WHERE rank < 4 ORDER BY vip_points DESC LIMIT 1");
                                     while($s = $r->fetch(PDO::FETCH_ASSOC)){?>
 									<div id="index-hall-of-fame-box">
 										<div id="index-hall-of-fame-box-avatar">
@@ -123,7 +123,7 @@
 									</div>
                                     <?php } ?>
 									<div id="index-hall-of-fame-box">
-                                        <?php $r = $bdd->query("SELECT username,look,activity_points,id FROM players WHERE rank < 4 ORDER BY activity_points DESC LIMIT 1");
+                                        <?php $r = $bdd->query("SELECT username,figure,activity_points,id FROM players WHERE rank < 4 ORDER BY activity_points DESC LIMIT 1");
                                         while($s = $r->fetch(PDO::FETCH_ASSOC)){
                                         ?>
 										<div id="index-hall-of-fame-box-avatar">
