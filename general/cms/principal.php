@@ -17,7 +17,35 @@
 	<body class="grid-template-rows">
 		<?php include('../../config/includes/header.php'); ?>
 			<div id="header-other-area">
-				<div class="webcenter"></div>
+				<div class="webcenter">
+					<div id="header-other-area-icon" cam></div>
+						<separator></separator>	
+						<?php
+							$getPhoto = $bdd->prepare("SELECT creator_id, creator_name, file_name, created_at FROM camera_photos ORDER BY created_at DESC LIMIT 5");
+							$getPhoto->execute();
+							while($resultPhoto = $getPhoto->fetch(PDO::FETCH_ASSOC)){
+						?>
+						<?php 
+							$getLook = $bdd->prepare("SELECT id,look FROM players WHERE id = ?");
+							$getLook->bindValue(1, $resultPhoto['creator_id']);
+							$getLook->execute();
+							$resultLook = $getLook->fetch(PDO::FETCH_ASSOC);
+						?>
+
+						<?php if($resultPhoto['creator_id'] == $user['id']){?>
+							<a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Por: <?php $resultPhoto['creator_name'];?>" ><div id="header-other-area-icon" style="background:rgb(195, 195, 195) url() center;"></a>
+								<img src="https://i.imgur.com/CCJDF0v.png" style="height: 35px;width: 41px;background-color: #25b35e;border-radius: 22px;border: solid #2ce23a;margin-left: 17px;margin-top:7px;">
+								<b style="color: #fff; margin-left:-51px;margin-top:45px;text-shadow:3px -1px 9px #3a2c2c;font-size:9px;"><?php echo substr('Minha hist', 0, 9) . '...';?></b></div>	
+						<?php } ?>
+
+						<!-- Início area storie HTML E CSS by Lyor#9573 -->
+						<a data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Por: <?php $resultPhoto['creator_name'];?>" ><div id="header-other-area-icon" style="background:rgb(195, 195, 195) url(<?= $resultPhoto['file_name']; ?>) center; "></a>
+							<img src="https://habbo.com/habbo-imaging/avatarimage?figure=<?= $resultLook['look'] ?>&amp;&amp;size=s&amp;head_direction=3&amp;direction=3&amp;gesture=sml&amp;headonly=1" style="height: 36px;width: 33px;  background-image: linear-gradient(#e55039, #e58e26); border-radius: 16px;border: solid #f1992c;margin-left: 22px;margin-top:7px; ">
+							<b style="color: white; margin-left: -46px;margin-top: 41px;text-shadow:3px -1px 9px #3a2c2c;"><?= $resultPhoto['creator_name'];?></b></div>
+						<!-- Fim area storie HTML E CSS by Lyor#9573 -->
+						<?php } ?>
+					</div>
+				</div>
 			</div>
 		</header>
 		<container>
