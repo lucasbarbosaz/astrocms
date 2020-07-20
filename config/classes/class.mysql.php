@@ -7,8 +7,7 @@
   static public $PASSWORD = PASSWORD;
     public function __construct()
     {
-      $MySQL = mysql_connect(Mysql::$HOST, Mysql::$USERNAME, Mysql::$PASSWORD);
-      mysql_select_db(Mysql::$DATABASE, $MySQL);
+      $MySQL = mysqli_connect(Mysql::$HOST, Mysql::$USERNAME, Mysql::$PASSWORD);
     }
 }
 ?>
