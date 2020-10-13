@@ -33,8 +33,8 @@ function Redirect($url)
     exit;
 }
 
-function hybbe($str)
-{
+function hybbe($str) {
+
     global $bdd;
     $tmp2 = $bdd->query("SELECT * FROM hybbe_geral LIMIT 1");
     $tmp = $tmp2->fetch(PDO::FETCH_ASSOC);
