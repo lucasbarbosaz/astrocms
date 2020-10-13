@@ -1,0 +1,640 @@
+﻿@font-face
+{
+	font-family:'Segoe UI';
+	src:url(../fonts/SegoeUI.ttf);
+}
+
+html
+{
+	border-top:10px solid #8A2828;
+	color:#2F2F2F;
+	font-family:'Segoe UI';
+	padding-bottom:120px;
+}
+
+body
+{
+    background:#F3F3F3;
+    margin:2em auto 0;
+    padding-right:40px;
+    width:900px;
+}
+
+div.logo h1
+{
+	font-weight:700;
+}
+
+div.logo small
+{
+	display:block;
+	font-size:14px;
+	font-weight:400;
+	margin-left:2px;
+}
+
+div.campaigns
+{
+	background:#EEE url(http://i.imgur.com/NlNZKVC.png) no-repeat;
+	background-position:right;
+	border-bottom:1px solid #E0E0E0;
+	border-top:1px solid #E0E0E0;
+	height:auto;
+	padding:10px 20px;
+	width:100%;
+}
+
+div.twitter
+{
+	-moz-box-shadow:inset 0 -8px 22px -8px #E0E0E0;
+	-webkit-box-shadow:inset 0 -8px 22px -8px #E0E0E0;
+	background:#EEE;
+	border:1px solid #E0E0E0;
+	box-shadow:inset 0 -8px 22px -8px #E0E0E0;
+	max-height:285px;
+	overflow:auto;
+	padding:10px 20px;
+	width:553px;
+}
+
+div.connect
+{
+	-moz-box-shadow:inset 0 -8px 22px -8px #E0E0E0;
+	-webkit-box-shadow:inset 0 -8px 22px -8px #E0E0E0;
+	background:#EEE;
+	border:1px solid #E0E0E0;
+	box-shadow:inset 0 -8px 22px -8px #E0E0E0;
+	max-height:auto;
+	overflow:auto;
+	padding:10px 20px;
+	width:553px;
+	-moz-opacity:0.5;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 3px;
+    border:dashed 4px #ffffff;
+}
+
+div.twitter .rows
+{
+	margin-top:10px;
+}
+
+div.connect .rows
+{
+	margin-top:10px;
+}
+
+div.twitter h1
+{
+	font-weight:200;
+	margin-bottom:0;
+	margin-top:0;
+}
+
+div.connect h1
+{
+	font-weight:200;
+	margin-bottom:0;
+	margin-top:0;
+}
+
+div.campaigns h1
+{
+	font-weight:200;
+	margin-bottom:0;
+	margin-top:0;
+}
+
+a
+{
+	color:#8D2D2D;
+	text-decoration:none;
+}
+
+div.twitter a
+{
+	float:right;
+}
+
+div.connect a
+{
+	float:center;
+}
+
+hr
+{
+	border:0;
+	border-top:1px solid #ECECEC;
+	height:0;
+	margin-bottom:20px;
+	margin-top:20px;
+}
+
+div.messages
+{
+	padding:10px;
+	width:580px;
+}
+
+div.messages h1
+{
+	font-weight:200;
+	margin-bottom:0;
+}
+
+div.campaigns p
+{
+	color:#666;
+	font-size:14px;
+	line-height:20px;
+	width:500px;
+}
+
+div.twitter .rows .row img
+{
+	display:block;
+	float:left;
+	margin-right:10px;
+}
+
+div.twitter .rows .row p
+{
+	color:#666;
+	font-size:14px;
+	line-height:20px;
+	text-align:justify;
+}
+
+div.twitter .rows .row a
+{
+	margin-top:7px;
+}
+
+div.connect .rows .row img
+{
+	display:block;
+	float:center;
+	margin-right:10px;
+}
+
+div.connect .rows .row p
+{
+	color:#666;
+	font-size:14px;
+	line-height:20px;
+	text-align:justify;
+}
+
+div.connect .rows .row a
+{
+	margin-top:7px;
+}
+
+div.messages p
+{
+	color:#666;
+	font-size:14px;
+	line-height:20px;
+	text-align:justify;
+}
+
+div.head .menu
+{
+	border-radius:7px;
+	color:#777;
+	float:right;
+	height:20px;
+	margin-right:-40px;
+	margin-top:13px;
+	padding:15px;
+	width:auto;
+	max-width: 700px;
+	-moz-opacity:0.5;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+}
+
+div.head .menu .welcome
+{
+	margin-left:50px;
+}
+
+.column-left
+{
+	float:left;
+}
+
+.column-right
+{
+	float:right;
+	margin-top:40px;
+}
+
+div.publicites
+{
+	background:#EEE;
+	border:1px solid #E0E0E0;
+	margin-right:-40px;
+	padding:25px 20px;
+	width:260px;
+	height:auto;
+}
+
+.footer
+{
+	background:#EEE;
+	border-top:2px solid #E8E8E8;
+	bottom:0;
+	height:50px;
+	left:0;
+	padding:20px;
+	position:fixed;
+	width:100%;
+	-moz-opacity:0.5;
+    opacity: 0.5;
+    filter:alpha(opacity=50);
+}
+
+span.publicite a
+{
+	float:right;
+	margin-top:18px;
+}
+
+span.publicite
+{
+	color:#666;
+	font-size:14px;
+}
+
+span.publicite .title
+{
+	color:#8D2D2D;
+}
+
+div.footer .content
+{
+	color:#666;
+	font-size:14px;
+	margin:0 auto;
+	width:900px;
+}
+
+div.footer .content a
+{
+	border-right:1px solid #C3C3C3;
+	color:#8D2D2D;
+	font-size:14px;
+	padding-left:5px;
+	padding-right:10px;
+}
+
+div.footer .content a.noborder
+{
+	border:none;
+}
+
+div.head .menu .welcome-text
+{
+	float:left;
+	margin-left:60px;
+	margin-right:-20px;
+}
+
+div.head .menu .welcome .stat
+{
+	margin-right:10px;
+	padding-left:30px;
+	width:80px;
+}
+
+.stat.credits
+{
+	background:url(../images/piece.png?2) no-repeat;
+	background-position:-2px;
+}
+
+.stat.hotel
+{
+	background:url(../images/hotel-button-medium-icon.png) no-repeat;
+	background-position:-2px;
+}
+
+.stat.dc
+{
+	background:url(../images/hotel-button-medium-icon-closed.png) no-repeat;
+	background-position:-2px;
+}
+
+.publicite-img
+{
+	max-height:300px;
+	min-height:250px;
+	width:260px;
+	border-radius: 300px; /* propriété CSS3 */
+    -moz-border-radius: 300px; /* compatibilité avec Firefox */
+    -webkit-border-radius: 300px; /* compatibilité avec les navigateurs Webkit */
+}
+
+.publicite-img .skipper
+{
+	background:rgba(0,0,0,0.6);
+	color:#FFF;
+	height:23px;
+	padding-top:3px;
+	position:absolute;
+	width:260px;
+	border-radius: 300px; /* propriété CSS3 */
+    -moz-border-radius: 300px; /* compatibilité avec Firefox */
+    -webkit-border-radius: 300px; /* compatibilité avec les navigateurs Webkit */
+}
+a[class*="btn"] {
+	text-decoration: none;
+}
+input[class*="btn"],
+button[class*="btn"] {
+	border: 0;
+	font-family: Lato, sans-serif; 
+}
+
+.btn, .btn-two, .btn-gradient {
+	margin: 7px 5px;
+}
+/* Here you can change the button sizes */
+.btn.large, .btn-two.large, .btn-effect.large {padding: 20px 40px; font-size: 22px;}
+.btn.small, .btn-two.small, .btn-gradient.small, .btn-effect.small {padding: 8px 18px;  font-size: 14px;}
+.btn.mini, .btn-two.mini, .btn-gradient.mini, .btn-effect.mini    {padding: 4px 12px;  font-size: 12px;}
+.btn.block, .btn-two.block, .btn-gradient.block, .btn-effect.block {display: block; text-align: center;}
+
+.btn-gradient.large {padding: 15px 45px; font-size: 22px;}
+
+/* default colors for .btn and .btn-two */
+.btn.blue, .btn-two.blue {background-color: #7fb1bf;}
+.btn.green, .btn-two.green {background-color: #77b135;}
+.btn.red, .btn-two.red {background-color: #ea3636;}
+.btn.purple, .btn-two.purple {background-color: #cb99c5;}
+.btn.cyan, .btn-two.cyan {background: #326197;}
+.btn.yellow, .btn-two.yellow {background-color: #f0d264;}
+
+.rounded {border-radius: 4px;}
+
+/* default button style */
+.btn {
+	position: relative;
+	border: 0;
+	padding: 15px 25px;
+	display: inline-block;
+	text-align: center;
+	color: white;
+  	transition: all 0.02s;
+}
+.btn:hover {
+	color:#fff;
+}
+/* moves .btn 4px down when clicked */
+.btn:active {
+	top: 4px;	
+}
+
+/* default button color classes for .btn */
+.btn.blue {box-shadow: 0px 4px #74a3b0;}
+.btn.blue:active {box-shadow: 0 0 #74a3b0; background-color: #709CA8;}
+
+.btn.green {box-shadow: 0px 4px 0px #669630;}
+.btn.green:active {box-shadow: 0 0 #69a63d; background-color: #60a331;}
+
+.btn.red {box-shadow:0px 4px 0px #b12222;}
+.btn.red:active {box-shadow: 0 0 #b01f1f; background-color: #dd0f0f;}
+
+.btn.purple {box-shadow:0px 4px 0px #AD83A8;}
+.btn.purple:active {box-shadow: 0 0 #BA8CB5; background-color: #BA8CB5;}
+
+.btn.cyan {box-shadow:0px 4px 0px #1d4776;}
+.btn.cyan:active {box-shadow: 0 0 #113968; background-color: #2d5684;}
+
+.btn.yellow {box-shadow:0px 4px 0px #D1B757;color:#333;}
+.btn.yellow:active {box-shadow: 0 0 #ff4c4b; background-color: #D6BB59;}
+
+/* button two */
+.btn-two {
+	color: white;	
+	padding: 15px 25px;
+	display: inline-block;
+	border: 1px solid rgba(0,0,0,0.21);
+	border-bottom-color: rgba(0,0,0,0.34);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.34) inset, 
+				0 2px 0 -1px rgba(0,0,0,0.13), 
+				0 3px 0 -1px rgba(0,0,0,0.08), 
+				0 3px 13px -1px rgba(0,0,0,0.21);
+}
+.btn-two:active {
+	top: 1px;
+	border-color: rgba(0,0,0,0.34) rgba(0,0,0,0.21) rgba(0,0,0,0.21);
+	box-shadow: 0 1px 0 rgba(255,255,255,0.89),0 1px rgba(0,0,0,0.05) inset;
+	position: relative;
+}
+/* 3D Button */
+.btn-3d {
+	position: relative;
+	display: inline-block;
+	font-size: 22px;
+	padding: 20px 60px;
+	color: white;
+	margin: 20px 10px 10px;
+	border-radius: 6px;
+	text-align: center;
+	transition: all .02s linear;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+
+/* 3D button background color on hover */
+.btn-3d.red:hover    {background-color: #F25757;}
+.btn-3d.blue:hover   {background-color: #699DD1;}
+.btn-3d.green:hover  {background-color: #80C49D;}
+.btn-3d.purple:hover {background-color: #D19ECB;}
+.btn-3d.yellow:hover {background-color: #F0D264;}
+.btn-3d.cyan:hover   {background-color: #82D1E3;}
+
+/* moves button 9px down when clicked */
+.btn-3d:active {
+	top: 9px;
+}
+
+/* Here is the main 3D buttons' colors */
+.btn-3d.red {
+	background-color: #FA5A5A;
+	
+	box-shadow: 0 0 0 1px #FA5A5A inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 #E55353,
+				0 8px 0 1px rgba(0,0,0,0.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.red:active {
+	box-shadow: 0 0 0 1px #FA5A5A inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.btn-3d.blue {
+	background-color: #6DA2D9;
+	box-shadow: 0 0 0 1px #6698cb inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 rgba(110, 164, 219, .7),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.blue:active {
+	box-shadow: 0 0 0 1px #6191C2 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.btn-3d.green {
+	background-color: #82c8a0;
+	box-shadow: 0 0 0 1px #82c8a0 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 rgba(126, 194, 155, .7),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.green:active {
+	box-shadow: 0 0 0 1px #82c8a0 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.btn-3d.purple {
+	background-color: #cb99c5;
+	box-shadow: 0 0 0 1px #cb99c5 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 rgba(189, 142, 183, .7),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.purple:active {
+	box-shadow: 0 0 0 1px #cb99c5 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.btn-3d.cyan {
+	background-color: #7fccde;
+	box-shadow: 0 0 0 1px #7fccde inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 rgba(102, 164, 178, 1),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.cyan:active {
+	box-shadow: 0 0 0 1px #7fccde inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+.btn-3d.yellow {
+	background-color: #EBCE63;
+	box-shadow: 0 0 0 1px #F0D264 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 8px 0 0 rgba(196, 172, 83, .7),
+				0 8px 0 1px rgba(0,0,0,.4),
+				0 8px 8px 1px rgba(0,0,0,0.5);
+}
+.btn-3d.yellow:active {
+	box-shadow: 0 0 0 1px #F0D264 inset,
+				0 0 0 2px rgba(255,255,255,0.15) inset,
+				0 0 0 1px rgba(0,0,0,0.4);
+}
+
+/* Gradient Buttons */
+.btn-gradient {
+	text-decoration: none;
+	color: white;
+	padding: 10px 30px;
+	display: inline-block;
+	position: relative;
+	border: 1px solid rgba(0,0,0,0.21);
+	border-bottom: 4px solid rgba(0,0,0,0.21);
+	border-radius: 4px;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.15);
+}
+/* Gradient Button's Colors */
+.btn-gradient.cyan {
+	background: rgba(27,188,194,1);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(27,188,194,1)), to(rgba(24,163,168,1)));
+	background: -webkit-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+	background: -moz-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+	background: -o-linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+	background: linear-gradient(rgba(27,188,194,1) 0%, rgba(24,163,168,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1bbcc2', endColorstr='#18a3a8', GradientType=0);
+}
+
+.btn-gradient.red { 
+	background: rgba(250,90,90,1);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(250,90,90,1)), to(rgba(232,81,81,1)));
+	background: -webkit-linear-gradient(rgba(250,90,90,1) 0%, rgba(232,81,81,1) 100%);
+	background: -moz-linear-gradient(rgba(250,90,90,1) 0%, rgba(232,81,81,1) 100%);
+	background: -o-linear-gradient(rgba(250,90,90,1) 0%, rgba(232,81,81,1) 100%);
+	background: linear-gradient(rgba(250,90,90,1) 0%, rgba(232,81,81,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fa5a5a', endColorstr='#e85151', GradientType=0 );
+}
+.btn-gradient.orange {
+	background: rgba(255,105,30,1);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(255,105,30,1)), to(rgba(230,95,28,1)));
+	background: -webkit-linear-gradient(rgba(255,105,30,1) 0%, rgba(230,95,28,1) 100%);
+	background: -moz-linear-gradient(rgba(255,105,30,1) 0%, rgba(230,95,28,1) 100%);
+	background: -o-linear-gradient(rgba(255,105,30,1) 0%, rgba(230,95,28,1) 100%);
+	background: linear-gradient(rgba(255,105,30,1) 0%, rgba(230,95,28,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff691e', endColorstr='#e65f1c', GradientType=0 );
+}
+.btn-gradient.blue {
+	background: rgba(102,152,203,1);
+	background: -moz-linear-gradient(top, rgba(102,152,203,1) 0%, rgba(92,138,184,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(102,152,203,1)), color-stop(100%, rgba(92,138,184,1)));
+	background: -webkit-linear-gradient(top, rgba(102,152,203,1) 0%, rgba(92,138,184,1) 100%);
+	background: -o-linear-gradient(top, rgba(102,152,203,1) 0%, rgba(92,138,184,1) 100%);
+	background: -ms-linear-gradient(top, rgba(102,152,203,1) 0%, rgba(92,138,184,1) 100%);
+	background: linear-gradient(to bottom, rgba(102,152,203,1) 0%, rgba(92,138,184,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6698cb', endColorstr='#5c8ab8', GradientType=0 );
+}
+.btn-gradient.purple { 
+	background: rgba(203,153,197,1);
+	background: -moz-linear-gradient(top, rgba(203,153,197,1) 0%, rgba(181,134,176,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(203,153,197,1)), color-stop(100%, rgba(181,134,176,1)));
+	background: -webkit-linear-gradient(top, rgba(203,153,197,1) 0%, rgba(181,134,176,1) 100%);
+	background: -o-linear-gradient(top, rgba(203,153,197,1) 0%, rgba(181,134,176,1) 100%);
+	background: -ms-linear-gradient(top, rgba(203,153,197,1) 0%, rgba(181,134,176,1) 100%);
+	background: linear-gradient(to bottom, rgba(203,153,197,1) 0%, rgba(181,134,176,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cb99c5', endColorstr='#b586b0', GradientType=0 );
+}
+.btn-gradient.yellow {
+	background: rgba(240,210,100,1);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(rgba(240,210,100,1)), to(rgba(229,201,96,1)));
+	background: -webkit-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+	background: -moz-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+	background: -o-linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+	background: linear-gradient(rgba(240,210,100,1) 0%, rgba(229,201,96,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0d264', endColorstr='#e5c960', GradientType=0 );
+}
+.btn-gradient.green {
+	background: rgba(130,200,160,1);
+	background: -moz-linear-gradient(top, rgba(130,200,160,1) 0%, rgba(130,199,158,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(130,200,160,1)), color-stop(100%, rgba(130,199,158,1)));
+	background: -webkit-linear-gradient(top, rgba(130,200,160,1) 0%, rgba(130,199,158,1) 100%);
+	background: -o-linear-gradient(top, rgba(130,200,160,1) 0%, rgba(130,199,158,1) 100%);
+	background: -ms-linear-gradient(top, rgba(130,200,160,1) 0%, rgba(130,199,158,1) 100%);
+	background: linear-gradient(to bottom, rgba(130,200,160,1) 0%, rgba(124, 185, 149, 1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#82c8a0', endColorstr='#82c79e', GradientType=0 );
+}
+
+.btn-gradient.red:active {background: #E35252;}
+.btn-gradient.orange:active {background: #E8601B;}
+.btn-gradient.cyan:active {background: #169499;}
+.btn-gradient.blue:active {background: #608FBF;}
+.btn-gradient.purple:active {background: #BD8EB7;}
+.btn-gradient.yellow:active {background: #DBC05B;}
+.btn-gradient.green:active {background: #72B08E;}
