@@ -32,11 +32,9 @@ require_once PATH . 'config/classes/class.auth.php';
 require_once PATH . 'config/classes/class.user.php';
 require_once PATH . 'config/classes/class.filter.php';
 require_once PATH . 'config/arquivos/sessao.php';
-require_once PATH . 'config/arquivos/data.php';
 $Db = new Db($bdd);
 $Config = new Config();
 $Auth = new Auth();
-$Filters = new Filter();
 //$Function = new Functions();
 if (isset($_SESSION)) {
     $user = new User($bdd, $_SESSION['username'], $_SESSION['password']);
