@@ -19,7 +19,10 @@
 <h4>Created entirely using the PHP PDO function.</h4>
 <hr>
 <h2>Developers Contact</h2>
-<h4>Laxus: Email-> corplaxus@gmail.com / Discord-> laxus#0001</h4>
+<h4>Laxus: Email-> corplaxus@gmail.com / Discord-> laxus#00026
+</h4>
 <h4>Dut: Email-> dut.developer@gmail.com / Discord-> Dut#4546</h4>
 <h4>Wake: Email-> developer.wake@gmail.com / Discord-> Wake#8598</h4>
 <hr>
+
+<a href="https://imgur.com/a/BgYonKl" target="_blank">Images</a>
